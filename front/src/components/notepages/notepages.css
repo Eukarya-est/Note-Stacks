@@ -1,0 +1,106 @@
+.notePages{
+    margin: 20px;
+    padding: 5px;
+    background-color: white;
+    grid-row: 2;
+    grid-column : 2;
+    display: inline-grid;
+    grid-template-columns: 10% 90%;
+    height: 1em;
+    z-index: 5;
+}
+
+.emptyPages{
+    visibility: hidden;
+}
+
+.pageNumberList{
+    margin-top: 10px;
+    padding: 0;
+    font-family: 'Josefin Sans', sans-serif;
+    list-style: none;
+    margin: 0px 5px 0px 0px;
+}
+
+.pageNumberListTitle{
+    padding: 5px;
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 0px 0px 5px 0px;
+    list-style: none;
+    color:white;
+    background-color:#7B0323;
+    border: 1px solid;
+    border-color: #7B0323;
+    border-radius: 3px;
+}
+
+.pageNumberListItem{
+    padding: 5px;
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 0px 0px 5px 0px;
+    border-bottom: 1px solid #7B0323;
+    text-overflow: ellipsis;
+    border-radius: 3px;
+}
+
+.pageNameList{
+    margin: 0px 0px 5px 0px;
+    padding: 0;
+    font-family: 'Josefin Sans', sans-serif;
+    list-style: none;
+}
+
+.pageNameListTitle{
+    padding: 5px;
+    margin: 0px 0px 5px 0px;
+    font-family: 'Josefin Sans', sans-serif;
+    list-style: none;
+    color:white;
+    background-color:#7B0323;
+    border: 1px solid;
+    border-color: #7B0323;
+    border-radius: 3px;
+}
+
+.pageNameListItem{
+    padding: 5px;
+    margin: 0px 0px 5px 0px;
+    font-family: 'Josefin Sans', sans-serif;
+    border-bottom: 1px solid #7B0323;
+    border-radius: 3px;
+}
+
+.pageNumberListItem.hovered,
+.pageNameListItem.hovered{
+    color: white;
+    background-image: linear-gradient(to left,#5951f3,#f35167), linear-gradient(to right,#5951f3,#f35167);
+    background-clip : padding-box, border-box;
+    background-origin: border-box;
+    animation : huerotate 6s infinite linear;
+    cursor: pointer;
+}
+
+.pageListToggleButton{
+    position: fixed;
+    top: 60px;
+    visibility: visible;
+    z-index: 99;
+    right: 5%
+}
+
+.pageListIcon{
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+    border-radius: 15px;
+    color: #2f3f4f;
+    background-color: #f4f5f7;
+}
+
+.pageListIcon:hover{
+    color: white;
+    background-image: linear-gradient(to left,#5951f3,#f35167), linear-gradient(to right,#5951f3,#f35167);
+    background-clip : padding-box, border-box;
+    background-origin: border-box;
+    animation : huerotate 6s infinite linear;
+}

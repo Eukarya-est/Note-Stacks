@@ -1,0 +1,76 @@
+.pageListCotroller{
+    position: sticky;
+    top: 85px;
+    background-color: white;
+    grid-row: 1;
+    grid-column : 2;
+    align-items: center;
+    justify-items: center;
+    height: 40px;
+    z-index: 2;
+    opacity: 0.2;
+}
+
+.pageListCotroller:hover{
+    opacity: 1;
+}
+
+.pageListControllerIcons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.pageNavigator{
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-left: 1%;
+    margin-right: 1%;
+    width: 100px;
+    height: 30px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 16px;
+    line-height: 30px; 
+    text-align: center;
+}
+
+input[name=designedNum]{
+    width: 50px;
+    height: 20px;
+    float: left;
+}
+
+.pageSupremeNum {
+  display: inline-block;
+  min-width: 3.5em; /* Adjust as needed for your max number length */
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: left;
+  padding-left: 0.2em;
+}
+
+.pageListControllerIcon{
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    color: #2f3f4f;
+    border-radius: 3px;
+    background-color: #f4f5f7;
+}
+
+.pageListControllerIcon.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+  transition: none; /* disables hover animation */
+}
+
+.pageListControllerIcon:hover{
+    color: white;
+    background-image: linear-gradient(to left,#5951f3,#f35167), linear-gradient(to right,#5951f3,#f35167);
+    background-clip : padding-box, border-box;
+    background-origin: border-box;
+    animation : huerotate 6s infinite linear;
+}

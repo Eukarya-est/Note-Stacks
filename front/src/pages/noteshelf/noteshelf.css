@@ -1,0 +1,12 @@
+.noteframe-shelf-opend{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 2rem 15rem 1fr; 
+}
+
+.noteframe-shelf-closed{
+    display: grid;
+    grid-template-columns: 1% 99%;
+    grid-template-rows: 2rem 15rem 1fr; 
+}
+

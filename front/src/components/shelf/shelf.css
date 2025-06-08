@@ -1,0 +1,117 @@
+.shelf-container-opend{
+    position: fixed;
+    top: 70px;
+    grid-column: 1;
+    width: 20%;
+    height: 100%;
+    box-shadow: 0px 0px 20px 0px rgba(22, 22, 22, 0.1);
+    z-index: 10;
+}
+
+.shelf-container-closed{
+    top: 50px;
+    grid-column: 1;
+    width: 5%;
+    height: 100%;
+    z-index: 10;
+}
+
+.shelfToggleButton{
+    position: fixed;
+    top: 80px;
+    visibility: visible;
+    z-index: 99;
+    cursor: pointer;
+}
+
+.shelfIcon{
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+    border-radius: 3px;
+    color: #2f3f4f;
+    background-color: #f4f5f7;
+    text-overflow: ellipsis;
+}
+
+.shelfIcon:hover{
+    color: white;
+    background-image: linear-gradient(to left,#5951f3,#f35167), linear-gradient(to right,#5951f3,#f35167);
+    background-clip : padding-box, border-box;
+    background-origin: border-box;
+    animation : huerotate 6s infinite linear;
+}
+
+.shelf-opened{
+    margin-top: 2px;
+    z-index: 98;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.shelf-closed{
+    margin-top: 2px;
+    z-index: 98;
+    background-color: rgba(255, 255, 255, 0.2);
+    visibility: hidden;
+}
+
+.navController{ 
+    width: 0%;
+    padding: 0px;
+}
+
+.shelfList{
+    font-family: 'Josefin Sans', sans-serif;
+    list-style: none;
+    padding: 0px;
+    margin-top: 50px;
+}
+
+.shelfTitle{
+    font-family: 'Josefin Sans', sans-serif;
+    justify-content: center;
+    margin-bottom: 5px;
+    padding: 5px;
+    color:white;
+    background-color:#7B0323;
+    border: 1px solid;
+    border-color: #7B0323;
+    border-radius: 3px;
+}
+
+.shelfItemList{
+    display: block;
+    padding: 0;
+    list-style: none;
+}
+
+.shelfItem{
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 5px;
+    padding: 5px;
+    font-weight: 300;
+    cursor: pointer;
+    border: 1px solid;
+    border-radius: 3px;
+}
+
+.shelfItem:hover{
+    filter: hue-rotate(360deg);
+    color: white;
+    border: 1px solid transparent;
+    background-image: linear-gradient(to left,#5951f3,#f35167), linear-gradient(to right,#5951f3,#f35167);
+    background-clip : padding-box, border-box;
+    background-origin: border-box;
+    animation : huerotate 6s infinite linear;
+    
+}
+
+@keyframes huerotate {
+    0% {
+    filter: hue-rotate(0deg);
+    }
+    100% {
+    filter: hue-rotate(360deg);
+    }
+  }
