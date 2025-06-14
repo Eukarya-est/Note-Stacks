@@ -78,6 +78,63 @@
     background-origin: border-box;
     animation : huerotate 6s infinite linear;
     cursor: pointer;
+    border-bottom: transparent;
+}
+
+.pageNumberListItem.selected,
+.pageNameListItem.selected{
+    color: white;
+    background-image: linear-gradient(to left,#5951f3,#f35167), linear-gradient(to right,#5951f3,#f35167);
+    background-clip : padding-box, border-box;
+    background-origin: border-box;
+    animation : huerotate 6s infinite linear;
+    cursor: pointer;
+    border-bottom: transparent;
+}
+
+@-moz-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@-webkit-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@-o-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
 }
 
 .pageListToggleButton{

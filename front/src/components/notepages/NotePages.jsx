@@ -9,43 +9,25 @@ export default function NotesPages(props) {
   // It allows the user to select a page by clicking on it
   // It receives props from the parent component, including the category, page number, and functions to set the selected page and supreme number of pages
 
-  const [list, setList] = useState([]);
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [list, setList] = useState();
 
+  const apiPage = props.apiPage + '/' + props.category + '/' + props.pageNo;
+  
   useEffect(() => {
-    let apiPage;
-    if (props.category === undefined || props.category === null) {
-      // If category is not defined, use the default apiPage
-      apiPage = props.apiPage;
-    } else {
-      if (props.pageNo === undefined || props.pageNo === null || isNaN(parseInt(props.pageNo))) {
-        // If pageNo is not defined, use the default apiPage with category
-        apiPage = props.apiPage + '/' + props.category;
-      } else {
-        // If both category and pageNo are defined, construct the apiPage with both
-        apiPage = props.apiPage + '/' + props.category + '/' + props.pageNo;
-      } 
+    if (props.category !== undefined && props.pageNo !== 0) {
+      fetch(apiPage)
+        .then((response) => response.json())
+        .then((data) => {
+          setList(data['pages']);
+          props.setPage(data['page']);
+        })
+        .catch((error) => {
+          console.error('Failed: Load Pages; ', error);
+        });
     }
-    fetch(apiPage).then(
-      response => response.json()
-    ).then(
-      data => {
-        if(data.length > 1) {
-          // Supreme Number of list
-          props.setSupNo(data[0]);                                                      
-    
-          data.splice(0, 1); 
-          setList(data);
-          props.setPage(data[0]);                                         
-        }
-      }
-    ).catch(
-      error => {
-        console.error('Failed: Load Pages; ', error)
-      }
-    );
-  }, [props.category, props.apiPage]);
-
+  }, [props.pageNo]);
+  
   return (
       <div className="notePages">
         <ul className="pageNumberList">
@@ -56,23 +38,23 @@ export default function NotesPages(props) {
               ))
             ) : (Object.entries(list).map(([index, item], i) => {
                 let style = {};
-                if (item[2] === ' - ') {
+                if (item[0] === ' - ') {
                   style.cursor = 'default';
-                } else if (item[2] === props.pageNo) {
+                } else if (item[0] == props.pageNo) {
                   style.cursor = 'default';
                   style.fontWeight = 'bold';
-                  style.backgroundColor = '#f0f0f0'; // Highlight the current page
+                  style.backgroundColor = '#fff0f0'; // Highlight the current page
                 }
               return (
                 <li             
                   key={index}
                   className={`pageNumberListItem${hoveredIndex === i  ? ' hovered' : ''}`}
-                  onMouseEnter={() => {if (!(item[2] === ' - ' || item[2] === props.pageNo)) setHoveredIndex(i);}}
+                  onMouseEnter={() => {if (!(item[0] === ' - ' || item[0] === props.pageNo)) setHoveredIndex(i);}}
                   onMouseLeave={() => setHoveredIndex(null)}
-                  onClick={item[2] === ' - ' || item[2] === props.pageNo ? () => undefined : undefined }
+                  onClick={item[0] === ' - ' || item[0] === props.pageNo ? () => undefined : () => props.setPageNo(item[0]) }
                   style={style}
                 >
-                  {item[2]}
+                  {item[0]}
                 </li>
               )}
             ))}
@@ -85,23 +67,23 @@ export default function NotesPages(props) {
               ))
             ) : (Object.entries(list).map(([index, item], i) => {
                 let style = {};
-                if (item[2] === ' - ') {
+                if (item[0] === ' - ') {
                   style.cursor = 'default';
-                } else if (item[2] === props.pageNo) {
+                } else if (item[0] == props.pageNo) {
                   style.cursor = 'default';
                   style.fontWeight = 'bold';
-                  style.backgroundColor = '#f0f0f0'; 
+                  style.backgroundColor = '#fff0f0'; 
                 }
               return (
                 <li             
                   key={index}
                   className={`pageNameListItem${hoveredIndex === i  ? ' hovered' : ''}`}
-                  onMouseEnter={() => {if (!(item[2] === ' - ' || item[2] === props.pageNo)) setHoveredIndex(i);}}
+                  onMouseEnter={() => {if (!(item[0] === ' - ' || item[0] === props.pageNo)) setHoveredIndex(i);}}
                   onMouseLeave={() => setHoveredIndex(null)}
-                  onClick={item[2] === ' - ' || item[2] === props.pageNo ? () => undefined : undefined }
+                  onClick={item[0] === ' - ' || item[0] === props.pageNo ? () => undefined :() =>  props.setPageNo(item[0]) }
                   style={style}
                 >
-                  {item[6]}
+                  {item[1]}
                 </li>
               )}
             ))}

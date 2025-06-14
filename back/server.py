@@ -20,6 +20,7 @@ mysql.init_app(app)
 
 # Initialize shelfCategory variable
 shelfCategory = 0
+supNum = 0;
 
 @app.route('/api/shelf', methods=['GET'])
 def getShelfCategory():
@@ -78,58 +79,47 @@ def getShelfCategory():
 
 @app.route('/api/shelf/<category>', methods=['GET'])
 def getDefault(category):
+    global supNum
     
-    result = ();
-
-    # Inquery defalut data
-    try:
-        cursor = mysql.connect().cursor()
-        
-        query = "SELECT * FROM page_test WHERE COVER = %s AND DISPLAY = 1 ORDER BY NUM DESC LIMIT 5"
-        cursor.execute(query, category)
-        defaultPages = cursor.fetchall()
-
-    except Exception as error:
-        error_logger.error(f"Failed: SELECT * FROM page_test WHERE COVER = {category} AND DISPLAY = 1 ORDER BY NUM DESC LIMIT 3")
-        error_logger.error(error)
-
-    while(len(defaultPages) != 5):
-            carrier = list(defaultPages)
-            carrier.append((" - " ," - "," - "," - "," - " ," - "," - " ," - "," - " ," - "))
-            defaultPages = tuple(carrier)
-    
-    debug_logger.debug(f"{carrier}")
-            
-    # Inquery supreme number
     try:
         cursor = mysql.connect().cursor()
         
         query = "SELECT MAX(NUM) FROM page_test WHERE COVER = %s AND DISPLAY = 1"
         cursor.execute(query, category)
-        suptemp = cursor.fetchall()
+        supreme = cursor.fetchall()
+        cursor.close()
 
     except Exception as error:
         error_logger.error(f"Failed: SELECT MAX(NUM) FROM page_test WHERE COVER = {category} AND DISPLAY = 1")
         error_logger.error(error)
 
-    carrier.insert(0,(list(suptemp)[0]))
-    debug_logger.debug(f"{carrier}")
+    if not supreme or not supreme[0][0]:
+        supreme = 0
 
-    result = tuple(carrier)
-    
-    debug_logger.debug(f"{result}")
-    return jsonify(result)
+    supNum = supreme[0][0]  
+       
+    debug_logger.debug(f"{supNum}")
+
+    return jsonify(supNum)
 
 @app.route('/api/shelf/<category>/<int:number>', methods=['GET'])
 def getPages(category, number):
+    carrier = {}
 
     try:
         cursor = mysql.connect().cursor()
+ 
+    # Ensure the number is within the valid range
+        if number - 2 < 1:
+            rangePre = 1
+        else:
+            rangePre = number - 2
+        if number + 2 > supNum: 
+            rangePost = supNum
+        else:
+            rangePost = number + 2
 
-        rangePre = number - 2
-        rangePost = number + 2
-
-        query = "SELECT * FROM page_test WHERE (NUM BETWEEN %s AND %s) AND COVER = %s AND DISPLAY = 1 ORDER BY NUM DESC"
+        query = "SELECT NUM, TITLE FROM page_test WHERE (NUM BETWEEN %s AND %s) AND COVER = %s AND DISPLAY = 1 ORDER BY NUM DESC"
         var = (rangePre, rangePost, category)
         cursor.execute(query, var)
         pages = cursor.fetchall()
@@ -141,11 +131,27 @@ def getPages(category, number):
 
     while(len(pages) != 5):
         temp = list(pages)
-        temp.append((" - " ," - "," - "," - "," - " ," - "," - " ," - "," - " ," - "))
+        temp.append((" - " ," - "))
         pages = tuple(temp)
+        carrier['pages'] = pages
 
-    debug_logger.debug(f"{pages}")
-    return jsonify(pages)
+    try:
+        cursor = mysql.connect().cursor()
+
+        query = "SELECT * FROM page_test WHERE NUM = %s  AND COVER = %s AND DISPLAY = 1"
+        var = (number, category)
+        cursor.execute(query, var)
+        page = cursor.fetchall()
+        cursor.close()
+    
+    except Exception as error:
+        error_logger.error(f"Failed: SELECT * FROM page_test WHERE (NUM BETWEEN {number - 2} AND {number + 2}) AND COVER = {category} AND DISPLAY = 1 ORDER BY NUM DESC")
+        error_logger.error(error)
+
+    carrier['page'] = page[0]
+    debug_logger.debug(f"{page}")
+
+    return jsonify(carrier)
 
 @app.route('/api/shelf/<category>/<int:number>/<MD>', methods=['GET'])
 def getPage(category, number, MD):
@@ -163,11 +169,6 @@ def getPage(category, number, MD):
         error_logger.error(error)
         
         return text
-
-@app.route('/api/shelf -', methods=['GET'])
-def getNonePage():
-    
-    return ' - ';
 
 if __name__ == '__main__':
     app.run(debug=True)

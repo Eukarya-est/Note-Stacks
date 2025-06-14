@@ -1,30 +1,13 @@
 import './shelf.css'
 
-import { useState, useEffect } from 'react';
 import { TbBooks, TbBooksOff } from "react-icons/tb";
 
 export default function Shelf(props) {
 
-  const [shelfCategory, setshelfCategory] = useState([]);
-
-  const selectCategory = (value) => {
-    props.setNotePages(value);
-  };
-
-  // Fetch shelf categories when component mounts
-  useEffect(() => {   
-    fetch(props.apiPage).then(
-      response => response.json()
-    ).then(
-      data => {
-        setshelfCategory(data)
-      }
-    ).catch(
-      error => {
-        console.error('Failed: Load Shelf; ', error)
-      }
-    );
-  }, []);
+  // This component is responsible for displaying the shelf categories
+  // It receives props from the parent component, including the shelf categories and functions to set the selected category
+  // It also includes a toggle button to open or close the shelf
+  // The shelf categories are displayed as a list, and clicking on a category sets it as the selected category
 
   return (
     <div className={props.openShelf ? "shelf-container-opend": "shelf-container-closed"}>
@@ -40,11 +23,11 @@ export default function Shelf(props) {
                 STACK
             </li>
             <ul className="shelfItemList">
-              {shelfCategory.length === 0 ? (
+              {props.shelfCategory.length === 0 ? (
                 <li className="shelfLoad">Loading..</li> 
               ) : (
-                Object.entries(shelfCategory).map(([index, category]) => (     
-                  <li key={ index } className="shelfItem" onClick={() => selectCategory(category)}>
+                Object.entries(props.shelfCategory).map(([index, category]) => (     
+                  <li key={index} className="shelfItem" onClick={() => props.setCategory(category)}>
                     {category}
                   </li>
                 ))
