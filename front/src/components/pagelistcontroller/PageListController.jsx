@@ -1,4 +1,5 @@
 import './pagelistcontroller.css'
+
 import { BiLeftArrowAlt, BiRightArrowAlt, BiArrowToLeft, BiArrowToRight } from "react-icons/bi";
 
 export default function PageListController(props) {
@@ -40,28 +41,28 @@ export default function PageListController(props) {
   
   return (
     <div className="pageListCotroller">
-        <div className="pageListControllerIcons">
-            <BiArrowToLeft 
-              className={`pageListControllerIcon${props.pageSupNo == '---' || props.pageNo == 1 ? ' disabled' : ''}`}
-              onClick={props.pageNo > 1 ? fastBackward : undefined}
-            />
-            <BiLeftArrowAlt
-              className={`pageListControllerIcon${props.pageSupNo == '---' || props.pageNo == 1 ? ' disabled' : ''}`}
-              onClick={props.pageNo > 1 ? decreasePage : undefined}
-            />
-            <div className='pageNavigator'>
-              <input type="number" name="designedNum" value={props.pageNo == 0 ? 1 : props.pageNo} min="1" max={props.pageSupNo == '---' ? 1 : props.pageSupNo} onChange={e => props.setPageNo(e.target.value)} />
-              <div className="pageSupremeNum"> / {props.pageSupNo === undefined? "---" : props.pageSupNo}</div>
-            </div>
-            <BiRightArrowAlt 
-              className={`pageListControllerIcon${props.pageSupNo == '---' || props.pageNo == props.pageSupNo ? ' disabled' : ''}`}
-              onClick={props.pageNo < props.pageSupNo ? increasePage : undefined}
-            />
-            <BiArrowToRight
-              className={`pageListControllerIcon${props.pageSupNo == '---' || props.pageNo == props.pageSupNo ? ' disabled' : ''}`}
-              onClick={props.pageNo < props.pageSupNo ? fastForward : undefined}
-            />
+      <div className="pageListControllerIcons">
+        <BiArrowToLeft 
+          className={`pageListControllerIcon${props.pageSupNo == '---' || props.pageNo == 1 ? ' disabled' : ''}`}
+          onClick={props.pageNo > 1 ? fastBackward : undefined}
+        />
+        <BiLeftArrowAlt
+          className={`pageListControllerIcon${props.pageSupNo == '---' || props.pageNo == 1 ? ' disabled' : ''}`}
+          onClick={props.pageNo > 1 ? decreasePage : undefined}
+        />
+        <div className='pageNavigator'>
+          <input type="number" name="designedNum" value={props.pageNo == 0 ? 1 : props.pageNo} min="1" max={props.pageSupNo == '---' ? 1 : props.pageSupNo} onChange={e => props.setPageNo(e.target.value)} />
+          <div className="pageSupremeNum"> / {props.pageSupNo === undefined? "---" : props.pageSupNo}</div>
         </div>
+        <BiRightArrowAlt 
+          className={`pageListControllerIcon${props.pageSupNo == '---' || props.pageNo == props.pageSupNo ? ' disabled' : ''}`}
+          onClick={props.pageNo < props.pageSupNo ? increasePage : undefined}
+        />
+        <BiArrowToRight
+          className={`pageListControllerIcon${props.pageSupNo == '---' || props.pageNo == props.pageSupNo ? ' disabled' : ''}`}
+          onClick={props.pageNo < props.pageSupNo ? fastForward : undefined}
+        />
+      </div>
     </div>
   )
 }

@@ -29,7 +29,7 @@
     height: 30px;
     margin-top: 5px;
     border-radius: 3px;
-    color: #2f3f4f;
+    color: #2b2b2b;
     background-color: #f4f5f7;
     text-overflow: ellipsis;
 }
@@ -73,9 +73,11 @@
     margin-bottom: 5px;
     padding: 5px;
     color:white;
-    background-color:#7B0323;
+    background: url(../../Images/img00.jpg);
+    background-repeat: no-repeat;   
+    background-clip: border-box; 
+    background-position: left;
     border: 1px solid;
-    border-color: #7B0323;
     border-radius: 3px;
 }
 
@@ -104,7 +106,6 @@
     background-clip : padding-box, border-box;
     background-origin: border-box;
     animation : huerotate 6s infinite linear;
-    
 }
 
 @keyframes huerotate {

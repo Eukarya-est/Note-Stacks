@@ -37,27 +37,28 @@ export default function NotesPages(props) {
                 <li className="pageNumberListItem" key={i}>-</li>
               ))
             ) : (Object.entries(list).map(([index, item], i) => {
-                let style = {};
-                if (item[0] === ' - ') {
-                  style.cursor = 'default';
-                } else if (item[0] == props.pageNo) {
-                  style.cursor = 'default';
-                  style.fontWeight = 'bold';
-                  style.backgroundColor = '#fff0f0'; // Highlight the current page
-                }
-              return (
-                <li             
-                  key={index}
-                  className={`pageNumberListItem${hoveredIndex === i  ? ' hovered' : ''}`}
-                  onMouseEnter={() => {if (!(item[0] === ' - ' || item[0] === props.pageNo)) setHoveredIndex(i);}}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                  onClick={item[0] === ' - ' || item[0] === props.pageNo ? () => undefined : () => props.setPageNo(item[0]) }
-                  style={style}
-                >
-                  {item[0]}
-                </li>
-              )}
-            ))}
+                const isDisabled = item[0] === ' - ';
+                const isSelected = item[0] === props.pageNo;
+                const isHovered = hoveredIndex === i && !isDisabled && !isSelected;
+                  return (
+                    <li
+                      key={index}
+                      className={[
+                        "pageNumberListItem",
+                        isHovered ? "hovered" : "",
+                        isSelected ? "selected" : "",
+                      ].join(" ")}
+                      onMouseEnter={() => {
+                        if (!isDisabled && !isSelected) setHoveredIndex(i);
+                      }}
+                      onMouseLeave={() => setHoveredIndex(null)}
+                      onClick={!isDisabled && !isSelected ? () => props.setPageNo(item[0]) : undefined}
+                    >
+                      {item[0]}
+                    </li>
+                  )
+              }))
+            }
         </ul>
         <ul className="pageNameList">
           <li className="pageNameListTitle">TITLE</li>
@@ -66,25 +67,26 @@ export default function NotesPages(props) {
                 <li className="pageNameListItem" key={i}>-</li>
               ))
             ) : (Object.entries(list).map(([index, item], i) => {
-                let style = {};
-                if (item[0] === ' - ') {
-                  style.cursor = 'default';
-                } else if (item[0] == props.pageNo) {
-                  style.cursor = 'default';
-                  style.fontWeight = 'bold';
-                  style.backgroundColor = '#fff0f0'; 
-                }
-              return (
-                <li             
-                  key={index}
-                  className={`pageNameListItem${hoveredIndex === i  ? ' hovered' : ''}`}
-                  onMouseEnter={() => {if (!(item[0] === ' - ' || item[0] === props.pageNo)) setHoveredIndex(i);}}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                  onClick={item[0] === ' - ' || item[0] === props.pageNo ? () => undefined :() =>  props.setPageNo(item[0]) }
-                  style={style}
-                >
-                  {item[1]}
-                </li>
+                const isDisabled = item[0] === ' - ';
+                const isSelected = item[0] === props.pageNo;
+                const isHovered = hoveredIndex === i && !isDisabled && !isSelected;
+
+                return (
+                  <li
+                    key={index}
+                    className={[
+                      "pageNameListItem",
+                      isHovered ? "hovered" : "",
+                      isSelected ? "selected" : "",// Debugging line to check item[1]
+                    ].join(" ")}
+                    onMouseEnter={() => {
+                      if (!isDisabled && !isSelected) setHoveredIndex(i);
+                    }}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                    onClick={!isDisabled && !isSelected ? () => props.setPageNo(item[0]) : undefined}
+                  >
+                    {item[1]}
+                  </li>
               )}
             ))}
         </ul>

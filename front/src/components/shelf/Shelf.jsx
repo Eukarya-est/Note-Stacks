@@ -13,27 +13,27 @@ export default function Shelf(props) {
     <div className={props.openShelf ? "shelf-container-opend": "shelf-container-closed"}>
       <nav className={props.openShelf ? "shelf-opend": "shelf-closed"}>
         <ul className="shelfList">
-            <div className="shelfToggleButton">
-              {props.openShelf ?
-                <TbBooks className="shelfIcon" id="shelfOn" onClick={props.toggleShelf} />:
-                <TbBooksOff className="shelfIcon" id="shelfOff" onClick={props.toggleShelf} />
-              }
-            </div>
-            <li className="shelfTitle">
-                STACK
-            </li>
-            <ul className="shelfItemList">
-              {props.shelfCategory.length === 0 ? (
-                <li className="shelfLoad">Loading..</li> 
-              ) : (
-                Object.entries(props.shelfCategory).map(([index, category]) => (     
-                  <li key={index} className="shelfItem" onClick={() => props.setCategory(category)}>
-                    {category}
-                  </li>
-                ))
-              )
-              }
-            </ul>
+          <div className="shelfToggleButton">
+            {props.openShelf ?
+              <TbBooks className="shelfIcon" id="shelfOn" onClick={props.toggleShelf} />:
+              <TbBooksOff className="shelfIcon" id="shelfOff" onClick={props.toggleShelf} />
+            }
+          </div>
+          <li className="shelfTitle">
+              STACK
+          </li>
+          <ul className="shelfItemList">
+            {props.shelfCategory.length === 0 ? (
+              <li className="shelfLoad">Loading..</li> 
+            ) : (
+              Object.entries(props.shelfCategory).map(([index, category]) => (     
+                <li key={index} className="shelfItem" onClick={() => props.setCategory(category)}>
+                  {category}
+                </li>
+              ))
+            )
+            }
+          </ul>
         </ul>
       </nav>
     </div>

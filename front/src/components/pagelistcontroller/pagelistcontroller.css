@@ -43,11 +43,11 @@ input[name=designedNum]{
 }
 
 .pageSupremeNum {
-  display: inline-block;
-  min-width: 3.5em; /* Adjust as needed for your max number length */
-  font-family: 'Josefin Sans', sans-serif;
-  text-align: left;
-  padding-left: 0.2em;
+    display: inline-block;
+    min-width: 3.5em; /* Adjust as needed for your max number length */
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: left;
+    padding-left: 0.2em;
 }
 
 .pageListControllerIcon{
@@ -62,14 +62,14 @@ input[name=designedNum]{
 }
 
 .pageListControllerIcon.disabled {
-  opacity: 0.4;
-  pointer-events: none;
-  transition: none; /* disables hover animation */
+    opacity: 0.4;
+    pointer-events: none;
+    transition: none; /* disables hover animation */
 }
 
 .pageListControllerIcon:hover{
     color: white;
-    background-image: linear-gradient(to left,#5951f3,#f35167), linear-gradient(to right,#5951f3,#f35167);
+    background-image: linear-gradient(to left,#5951f3,#f35167);
     background-clip : padding-box, border-box;
     background-origin: border-box;
     animation : huerotate 6s infinite linear;

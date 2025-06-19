@@ -145,7 +145,7 @@ def getPages(category, number):
         cursor.close()
     
     except Exception as error:
-        error_logger.error(f"Failed: SELECT * FROM page_test WHERE (NUM BETWEEN {number - 2} AND {number + 2}) AND COVER = {category} AND DISPLAY = 1 ORDER BY NUM DESC")
+        error_logger.error(f"Failed: SELECT * FROM page_test WHERE NUM = %s  AND COVER = %s AND DISPLAY = 1")
         error_logger.error(error)
 
     carrier['page'] = page[0]

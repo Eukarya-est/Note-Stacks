@@ -1,5 +1,10 @@
 import './notepage.css'
-import Markdown from 'react-markdown'
+
+import MarkdownWithKatex from '../markdown/Markdown';
+import ReactMarkdown from "react-markdown";
+import { MathJaxContext, MathJax } from "better-react-mathjax";
+import remarkGfm from 'remark-gfm';
+
 import { useState, useEffect } from 'react';
 
 export default function NotePage(props) {
@@ -8,7 +13,7 @@ export default function NotePage(props) {
     // It fetches the markdown content from the API based on the selected page
     // It receives props from the parent component, including the API endpoint, category, and selected page
 
-  const [markdownContent, setMarkdownContent] = useState("-");
+  const [markdown, setMarkdown] = useState("-");
 
   var apiPage = props.apiPage + '/' + props.category + '/' + props.pageNo;
 
@@ -17,7 +22,7 @@ export default function NotePage(props) {
       apiPage += '/' + props.page[8];
         fetch(apiPage)
           .then((response) => response.text())
-          .then((text) => setMarkdownContent(text))
+          .then((text) => setMarkdown(text))
           .catch((error) => {
             console.error('Failed: Load Page Content; ', error);
           });
@@ -53,7 +58,7 @@ export default function NotePage(props) {
           </ul>
           <ul className="contentInfo">
             <li className="content">
-              <Markdown>{markdownContent == '-' ? '': markdownContent }</Markdown>
+              <MarkdownWithKatex markdownContent={markdown == '-' ? '': markdown}/>
             </li>
         </ul>
       </div>
