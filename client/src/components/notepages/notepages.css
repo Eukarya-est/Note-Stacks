@@ -1,0 +1,119 @@
+.notePages{
+    margin: 20px;
+    padding: 5px;
+    background-color: #ffffff;
+    grid-row: 2;
+    grid-column : 2;
+    display: inline-grid;
+    grid-template-columns: 10% 90%;
+    height: 1em;
+    z-index: 5;
+}
+
+.emptyPages{
+    visibility: hidden;
+}
+
+.pageNumberList{
+    margin-top: 10px;
+    padding: 0;
+    font-family: 'Josefin Sans', sans-serif;
+    list-style: none;
+    margin: 0px 5px 0px 0px;
+}
+
+.pageNumberListTitle{
+    padding: 5px;
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 0px 0px 5px 0px;
+    list-style: none;
+    color:#ffffff;
+    background: url(../../Images/img00.jpg);
+    background-repeat: no-repeat;   
+    background-clip: border-box;
+    background-position: left; 
+    border: 1px solid;
+    border-radius: 3px;
+}
+
+.pageNumberListItem{
+    padding: 5px;
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 0px 0px 5px 0px;
+    border-bottom: 1px solid #050C9C;
+    opacity: 0.8;
+    text-overflow: ellipsis;
+    border-radius: 3px;
+}
+
+.pageNameList{
+    margin: 0px 0px 5px 0px;
+    padding: 0;
+    font-family: 'Josefin Sans', sans-serif;
+    list-style: none;
+}
+
+.pageNameListTitle{
+    padding: 5px;
+    margin: 0px 0px 5px 0px;
+    font-family: 'Josefin Sans', sans-serif;
+    list-style: none;
+    color:#ffffff;
+    background: url(../../Images/img00.jpg);
+    background-repeat: no-repeat;   
+    background-clip: border-box; 
+    background-position: left;
+    border: 1px solid;
+    border-radius: 3px;
+}
+
+.pageNameListItem{
+    padding: 5px;
+    margin: 0px 0px 5px 0px;
+    font-family: 'Josefin Sans', sans-serif;
+    border-bottom: 1px solid #050C9C;
+    opacity: 0.8;
+    border-radius: 3px;
+}
+
+.pageNumberListItem.selected,
+.pageNameListItem.selected{
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    background-color: #050C9C;
+    color: #ffffff;
+}
+
+.pageNumberListItem.hovered,
+.pageNameListItem.hovered{
+    color: #ffffff;
+    background-image: linear-gradient(to left,#5951f3,#f35167);
+    background-clip : padding-box, border-box;
+    background-origin: border-box;
+    animation : huerotate 6s infinite linear;
+    cursor: pointer;
+    border-bottom: 1px solid #ffffff;
+}
+
+.pageNumberListItem.disabled,
+.pageNameListItem.disabled{
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    background-color: #E0E0E0;
+}
+
+.pageListToggleButton{
+    position: fixed;
+    top: 60px;
+    visibility: visible;
+    z-index: 99;
+    right: 5%
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
