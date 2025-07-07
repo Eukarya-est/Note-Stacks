@@ -1,19 +1,19 @@
-.notePage{
+.note-page{
     margin: 20px;
     padding-bottom: 30px;
     background-color: #fbfbfb;
     font-size: 14px;
-    border-top: 2px solid #050C9C;
-    border-bottom: 2px solid #050C9C;
+    border-top: 2px solid #141a30;
+    border-bottom: 2px solid #141a30;
     grid-row: 3;
     grid-column : 2;
 }
 
-.infoPart{
+.page{
     display: column;
 }
 
-.mainInfo{
+.main-info{
     padding: 0;
     display: flex;
     font-family: 'Josefin Sans', sans-serif;
@@ -21,7 +21,7 @@
     list-style: none;
 }
 
-.mainInfoTitle{
+.main-info-title{
     flex: 1;
     height: 15px;
     margin: 0px 5px 0px 0px;
@@ -35,15 +35,15 @@
     border-radius: 3px;
 }
 
-.mainInfoItem{
+.main-info-item{
     flex: 2;
     height: 15px;
     margin: 0px 5px 0px 0px;
     padding: 5px;
-    border-bottom: 1px solid #050C9C;
+    border-bottom: 1px solid #141a30;
 }
 
-.dateInfo{
+.date-info{
     padding: 0;
     display: flex;
     font-family: 'Josefin Sans', sans-serif;
@@ -51,7 +51,7 @@
     list-style: none;
 }
 
-.dateInfoTitle{
+.date-info-title{
     flex: 1;
     height: 15px;
     margin: 0px 5px 0px 0px;
@@ -65,19 +65,19 @@
     border-radius: 3px;
 }
 
-.dateInfoItem{
+.date-info-item{
     flex: 4;
     height: 15px;
     margin: 0px 5px 0px 0px;
     padding: 5px;
-    border-bottom: 1px solid #050C9C;
+    border-bottom: 1px solid #141a30;
 }
 
 .contentPart{
     display: column;
 }
 
-.titleInfo{
+.title-info{
     padding: 0;
     display: flex;
     font-family: 'Josefin Sans', sans-serif;
@@ -85,7 +85,7 @@
     list-style: none;
 }
 
-.titleTitle{
+.title-title{
     width: 100px;
     height: 15px;
     margin: 0px 5px 0px 0px;
@@ -104,13 +104,13 @@
     height: 15px;
     margin: 0px 5px 0px 0px;
     padding: 5px;
-    border-bottom: 1px solid #050C9C;
+    border-bottom: 1px solid #141a30;
     overflow:hidden;
 	text-overflow:ellipsis;
 	white-space:nowrap;
 }
 
-.labelInfo{
+.label-info{
     padding: 0;
     display: flex;
     font-family: 'Josefin Sans', sans-serif;
@@ -118,7 +118,7 @@
     list-style: none;
 }
 
-.labelTitle{
+.label-title{
     width: 100px;
     height: 15px;
     margin: 0px 5px 0px 0px;
@@ -137,10 +137,10 @@
     height: 15px;
     margin: 0px 5px 0px 0px;
     padding: 5px;
-    border-bottom: 1px solid #050C9C;
+    border-bottom: 1px solid #141a30;
 }
 
-.contentInfo{
+.content-info{
     padding: 0;
     display: flex;
     font-family: 'Josefin Sans', sans-serif;

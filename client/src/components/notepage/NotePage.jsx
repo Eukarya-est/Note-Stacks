@@ -1,9 +1,6 @@
 import './notepage.css'
 
 import MarkdownWithKatex from '../markdown/Markdown';
-import ReactMarkdown from "react-markdown";
-import { MathJaxContext, MathJax } from "better-react-mathjax";
-import remarkGfm from 'remark-gfm';
 import { ServerURL } from "../../context/constant.jsx"
 
 import { useState, useEffect, useContext } from 'react';
@@ -30,33 +27,33 @@ export default function NotePage(props) {
   }, [props.page]);
 
   return (
-    <div className="notePage">
-      <div className="infoPart">
-          <ul className="mainInfo">
-            <li className="mainInfoTitle">COVER</li>
-            <li className="mainInfoItem">{props.page == undefined? "-" : props.page[1]}</li>
-            <li className="mainInfoTitle">No.</li>
-            <li className="mainInfoItem">{props.page == undefined? "-" : props.page[2]}</li>
-            <li className="mainInfoTitle">REVISION</li>
-            <li className="mainInfoItem">{props.page == undefined? "-" : props.page[3]}</li>
+    <div className="note-page">
+      <div className="page">
+          <ul className="main-info">
+            <li className="main-info-title">COVER</li>
+            <li className="main-info-item">{props.page == undefined? "-" : props.page[1]}</li>
+            <li className="main-info-title">No.</li>
+            <li className="main-info-item">{props.page == undefined? "-" : props.page[2]}</li>
+            <li className="main-info-title">REVISION</li>
+            <li className="main-info-item">{props.page == undefined? "-" : props.page[3]}</li>
           </ul>
-          <ul className="dateInfo">
-            <li className="dateInfoTitle">CREATED</li>
-            <li className="dateInfoItem">{props.page == undefined? "-" : props.page[4]}</li>
-            <li className="dateInfoTitle">REVISED</li>
-            <li className="dateInfoItem">{props.page == undefined? "-" : props.page[5]}</li>
+          <ul className="date-info">
+            <li className="date-info-title">CREATED</li>
+            <li className="date-info-item">{props.page == undefined? "-" : props.page[4]}</li>
+            <li className="date-info-title">REVISED</li>
+            <li className="date-info-item">{props.page == undefined? "-" : props.page[5]}</li>
           </ul>
         </div>
-        <div className="contentPart">
-          <ul className="titleInfo">
-            <li className="titleTitle">TITLE</li>
+        <div className="content">
+          <ul className="title-info">
+            <li className="title-title">TITLE</li>
             <li className="title">{props.page == undefined? "-" : props.page[6]}</li>
           </ul>
-          <ul className="labelInfo">
-             <li className="labelTitle">LABEL</li>
+          <ul className="label-info">
+             <li className="label-title">LABEL</li>
             <li className="label"> {props.page == undefined? "-" : props.page[8]} </li>
           </ul>
-          <ul className="contentInfo">
+          <ul className="content-info">
             <li className="content">
               <MarkdownWithKatex markdownContent={markdown == '-' ? '': markdown}/>
             </li>

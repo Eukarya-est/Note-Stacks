@@ -16,25 +16,25 @@ const setDesk = () =>{
 }
 
   return (
-    <div className="topBar">
+    <div className="top-bar">
       <hr className="stream"></hr>
       <div className="top">
-        <div className="topLeft">
+        <div className="top-left">
             The Note Stacks
         </div>
-        <div className="topCenter">
-          <ul className="topList">
-            <li className="topListItem" onClick={setNoteShelf}>
+        <div className="top-center">
+          <ul className="top-list">
+            <li className="top-list-item" onClick={setNoteShelf}>
                 NOTESHELF
             </li>
-            <li className="topListItem" onClick={setDesk}>
+            <li className="top-list-item" onClick={setDesk}>
                 DESK
             </li>
           </ul>
         </div>
-        <div className="topRight">
-          <ul className="topList">
-            <FaSearch className='topSearchIcon'/>
+        <div className="top-right">
+          <ul className="top-list">
+            <FaSearch className="top-search-icon"/>
           </ul>
         </div>
       </div>

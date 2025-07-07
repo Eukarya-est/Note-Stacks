@@ -6,9 +6,10 @@
     background-repeat: no-repeat;
     background-position: top;
     background-size: 100%;
+    z-index: -1;
 }
 
-.profileBox{
+.profile-box{
     height: 700px;                                  
     margin-top: 100px;
     margin-bottom: 100px;
@@ -16,7 +17,8 @@
     display: flex;                                                                                                                  
 }
 
-.profileImg{
+.profile-img{
+    position: relative;
     margin-top: 20px;
     margin-right: 20px;
     width: 100px;
@@ -27,28 +29,78 @@
     border-color: #D9D9D9;
 }
 
-.profileList{
+.profile-contents{
+    font-family: 'Josefin Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    font-size: 18px;
+}
+
+.profile-list{
     list-style: none;
     color: #D9D9D9;
 }
 
-.linkList{
+.link-list{
+    list-style: none;
+    color: #D9D9D9;
+    margin-top: 20px;
+}
+
+.link-icon-list{
     display: flex;
     list-style: none;
+    margin-top: 20px;
 }
 
-.linkListItem{
+.icon-wrapper{
+    position: relative;
+    width: 30px;
+    height: 30px;
     font-size: 30px;
-    margin-right: 10px;
     cursor: pointer;
     color: #D9D9D9;
+    z-index: 5;
+    margin-right: 15px;
+    align-items: center;
+    justify-content: center;
 }
 
-.linkListItem:hover {
-    color: black;
+.icon-wrapper:hover{
+    color: #141a30;
+    background-color: #f1f1f1;
 }
 
-.linkList2{
-    list-style: none;
-    color: #D9D9D9;
+.icon-wrapper:hover:after,
+.icon-wrapper:hover:before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    border-radius: 3px;
+    border-color: transparent;
+    background: linear-gradient(45deg, #00202e, #003f5c, #2c4875, #8a508f, #bc5090, #ff6361, #ff8531, #ffa600, #ffd380,
+    #ffa600, #ff6361, #bc5090, #8a508f, #2c4875, #003f5c, #00202e);
+    background-size: 400%;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: -1;
+    animation: steam 30s linear infinite;
+}
+
+.icon-wrapper:after {
+	filter: blur(5px);
+}
+
+@keyframes steam {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
 }

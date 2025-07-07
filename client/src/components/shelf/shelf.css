@@ -16,31 +16,6 @@
     z-index: 10;
 }
 
-.shelfToggleButton{
-    position: fixed;
-    top: 80px;
-    visibility: visible;
-    z-index: 99;
-    cursor: pointer;
-}
-
-.shelfIcon{
-    width: 30px;
-    height: 30px;
-    margin-top: 5px;
-    border-radius: 3px;
-    color: #2b2b2b;
-    background-color: #f4f5f7;
-    text-overflow: ellipsis;
-}
-
-.shelfIcon:hover{
-    color: white;
-    background-image: linear-gradient(to left,#5951f3,#f35167), linear-gradient(to right,#5951f3,#f35167);
-    background-clip : padding-box, border-box;
-    background-origin: border-box;
-    animation : huerotate 6s infinite linear;
-}
 
 .shelf-opened{
     margin-top: 2px;
@@ -55,19 +30,14 @@
     visibility: hidden;
 }
 
-.navController{ 
-    width: 0%;
-    padding: 0px;
-}
-
-.shelfList{
+.shelf-list{
     font-family: 'Josefin Sans', sans-serif;
     list-style: none;
     padding: 0px;
     margin-top: 50px;
 }
 
-.shelfTitle{
+.shelf-title{
     font-family: 'Josefin Sans', sans-serif;
     justify-content: center;
     margin-bottom: 5px;
@@ -81,38 +51,62 @@
     border-radius: 3px;
 }
 
-.shelfItemList{
+.shelf-item-list{
     display: block;
     padding: 0;
     list-style: none;
 }
 
-.shelfItem{
+.shelf-item{
+    position: relative;
     margin-left: 0;
     margin-right: 0;
     margin-bottom: 5px;
     padding: 5px;
     font-weight: 300;
     cursor: pointer;
-    border: 1px solid;
+    border: 2px solid;
     border-radius: 3px;
 }
 
-.shelfItem:hover{
-    filter: hue-rotate(360deg);
-    color: white;
-    border: 1px solid transparent;
-    background-image: linear-gradient(to left,#5951f3,#f35167), linear-gradient(to right,#5951f3,#f35167);
-    background-clip : padding-box, border-box;
-    background-origin: border-box;
-    animation : huerotate 6s infinite linear;
+.shelf-item:hover{
+    background: #141a30;
+    border-style: hidden;
+    padding: 7px;
+    color:rgb(255, 255, 255, 1);
+}       
+
+.shelf-item:hover:after,
+.shelf-item:hover:before {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    border-radius: 3px;
+    border-color: transparent;
+    background: linear-gradient(45deg, #00202e, #003f5c, #2c4875, #8a508f, #bc5090, #ff6361, #ff8531, #ffa600, #ffd380,
+    #ffa600, #ff6361, #bc5090, #8a508f, #2c4875, #003f5c, #00202e);
+    background-size: 400%;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: -1;
+    animation: steam 30s linear infinite;
 }
 
-@keyframes huerotate {
+.shelf-item:after {
+	filter: blur(10px);
+}
+
+@keyframes steam {
     0% {
-    filter: hue-rotate(0deg);
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
     }
     100% {
-    filter: hue-rotate(360deg);
+        background-position: 0 0;
     }
-  }
+}
+
+  

@@ -60,8 +60,6 @@ export default function Notes() {
     var pathname = window.location.pathname;
     var pathSegments = pathname.split('/');
 
-    console.log(history)
-
     // If shelfCategory is empty, fetch it from the API
     if(pathSegments[1] == 'shelf') { 
       if(shelfCategory.length == 0){
@@ -95,7 +93,7 @@ export default function Notes() {
       );
     };
 
-    //When a category was changed
+    //When a page number was changed
     if (pathSegments[2] !== undefined && pathSegments[3] !== undefined) {
       if(pathSegments[3] > 0 && pathSegments[3] < pagesBound + 1){
         fetch(server + shelf + '/' + pathSegments[2] + '/' + pathSegments[3]).then(
@@ -114,7 +112,6 @@ export default function Notes() {
           ).then(
           data => {
               setPage(data);
-              console.log('PAGE');
             }
           ).catch(
             error => {
@@ -126,6 +123,7 @@ export default function Notes() {
 
   }, [window.location.pathname]);
 
+  //When a category was changed
   useEffect(() => {
 
       var pathname = window.location.pathname;
@@ -154,12 +152,12 @@ export default function Notes() {
       <div className={openShelf ? "noteframe-shelf-opend": "noteframe-shelf-closed"}>
           <Shelf 
             openShelf={openShelf}
-            toggleShelf={() => setShelf(!openShelf)}
             shelfCategory={shelfCategory}
             setCategory={handleCategorySelect}
             category={category}
           />
           <NotePageController 
+            toggleShelf={() => setShelf(!openShelf)}
             pagesBound={pagesBound}
             setBound={setBound}
             setPageNo={handlePageNumber}

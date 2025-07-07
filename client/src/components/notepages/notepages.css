@@ -1,4 +1,4 @@
-.notePages{
+.note-pages{
     margin: 20px;
     padding: 5px;
     background-color: #ffffff;
@@ -10,11 +10,8 @@
     z-index: 5;
 }
 
-.emptyPages{
-    visibility: hidden;
-}
 
-.pageNumberList{
+.page-number-list{
     margin-top: 10px;
     padding: 0;
     font-family: 'Josefin Sans', sans-serif;
@@ -22,7 +19,7 @@
     margin: 0px 5px 0px 0px;
 }
 
-.pageNumberListTitle{
+.page-number-list-title{
     padding: 5px;
     font-family: 'Josefin Sans', sans-serif;
     margin: 0px 0px 5px 0px;
@@ -36,24 +33,24 @@
     border-radius: 3px;
 }
 
-.pageNumberListItem{
+#page-number-list-item-id{
+    position: relative;
     padding: 5px;
     font-family: 'Josefin Sans', sans-serif;
     margin: 0px 0px 5px 0px;
-    border-bottom: 1px solid #050C9C;
-    opacity: 0.8;
+    border-bottom: 1px solid #0C0C0C;
     text-overflow: ellipsis;
     border-radius: 3px;
 }
 
-.pageNameList{
+.page-name-list{
     margin: 0px 0px 5px 0px;
     padding: 0;
     font-family: 'Josefin Sans', sans-serif;
     list-style: none;
 }
 
-.pageNameListTitle{
+.page-name-list-title{
     padding: 5px;
     margin: 0px 0px 5px 0px;
     font-family: 'Josefin Sans', sans-serif;
@@ -67,37 +64,53 @@
     border-radius: 3px;
 }
 
-.pageNameListItem{
+#page-name-list-item-id{
+    position: relative;
     padding: 5px;
     margin: 0px 0px 5px 0px;
     font-family: 'Josefin Sans', sans-serif;
-    border-bottom: 1px solid #050C9C;
-    opacity: 0.8;
+    border-bottom: 1px solid #141a30;
     border-radius: 3px;
 }
 
-.pageNumberListItem.selected,
-.pageNameListItem.selected{
+.page-selected{
     cursor: default;
     position: relative;
     overflow: hidden;
-    background-color: #050C9C;
+    background-color: #141a30;
     color: #ffffff;
+    border: 1px solid #141a30;
 }
 
-.pageNumberListItem.hovered,
-.pageNameListItem.hovered{
-    color: #ffffff;
-    background-image: linear-gradient(to left,#5951f3,#f35167);
-    background-clip : padding-box, border-box;
-    background-origin: border-box;
-    animation : huerotate 6s infinite linear;
+.page-enable{
+    background: #141a30;
+    border-style: hidden;
+    color:rgb(255, 255, 255, 1);
     cursor: pointer;
-    border-bottom: 1px solid #ffffff;
+}       
+
+.page-enable::after,
+.page-enable::before {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    border-radius: 3px;
+    border-color: transparent;
+    background: linear-gradient(45deg, #00202e, #003f5c, #2c4875, #8a508f, #bc5090, #ff6361, #ff8531, #ffa600, #ffd380,
+    #ffa600, #ff6361, #bc5090, #8a508f, #2c4875, #003f5c, #00202e);
+    background-size: 400%;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: -1;
+    animation: steam 30s linear infinite;
 }
 
-.pageNumberListItem.disabled,
-.pageNameListItem.disabled{
+.page-enable:after {
+	filter: blur(10px);
+}
+
+.page-disable{
     cursor: default;
     position: relative;
     overflow: hidden;
@@ -116,4 +129,16 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+@keyframes steam {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
 }

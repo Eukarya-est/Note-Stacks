@@ -1,4 +1,4 @@
-.pageListCotroller{
+.page-list-controller{
     position: sticky;
     top: 85px;
     background-color: white;
@@ -7,22 +7,34 @@
     align-items: center;
     justify-items: center;
     height: 40px;
-    z-index: 2;
+    z-index: 15;
     opacity: 0.2;
+    display: flex;
 }
 
-.pageListCotroller:hover{
+.page-list-controller:hover{
     opacity: 1;
 }
 
-.pageListControllerIcons{
+#shelf-toggle-button-id{
+    margin-top: 10px;
+    margin-left: -10px;
+}
+
+#shelf-icon-id{
+    width: 30px;
+    height: 30px;
+}
+
+.page-list-controller-icons{
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
+    margin-top: 10px;
 }
 
-.pageNavigator{
+.page-navigator{
     display: flex;
     align-items: center;
     gap: 0.5em;
@@ -36,7 +48,7 @@
     text-align: center;
 }
 
-input[name=designedNum]{
+input[name=designated-num]{
     width: 50px;
     height: 20px;
     float: left;
@@ -45,16 +57,16 @@ input[name=designedNum]{
     border-radius: 10px;
     font-family: 'Josefin Sans', sans-serif;
     color: #f1f1f1;
-    background-color: #050C9C;
+    background-color: #141a30;
 }
 
 .division{
-    border-left: 2px solid #050C9C;
+    border-left: 2px solid #141a30;
     height: 14px;
     width: 2px;
 };
 
-.pageBound {
+.page-bound {
     display: inline-block;
     min-width: 3.5em; /* Adjust as needed for your max number length */
     font-family: 'Josefin Sans', sans-serif;
@@ -64,7 +76,13 @@ input[name=designedNum]{
     text-align: left;
 }
 
-.pageListControllerIcon{
+#page-list-controlloer-icon-id{
+    width: 30px;
+    height: 30px;
+}
+
+.icon-wrapper-active{
+    position: relative;
     margin-left: 5%;
     margin-right: 5%;
     width: 30px;
@@ -75,16 +93,52 @@ input[name=designedNum]{
     background-color: #f4f5f7;
 }
 
-.pageListControllerIcon.disabled {
+.icon-wrapper-active:hover{
+    background: #141a30;
+    color: #f1f1f1
+}
+
+.icon-wrapper-active:hover:after,
+.icon-wrapper-active:hover:before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    border-radius: 3px;
+    border-color: transparent;
+    background: linear-gradient(45deg, #00202e, #003f5c, #2c4875, #8a508f, #bc5090, #ff6361, #ff8531, #ffa600, #ffd380,
+    #ffa600, #ff6361, #bc5090, #8a508f, #2c4875, #003f5c, #00202e);
+    background-size: 400%;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: -1;
+    animation: steam 30s linear infinite;
+}
+
+.icon-wrapper-active:after {
+	filter: blur(5px);
+}
+
+.icon-wrapper-inactive{
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 30px;
+    height: 30px;
+    color: #2f3f4f;
+    border-radius: 3px;
+    background-color: #f4f5f7;
     opacity: 0.4;
-    pointer-events: none;
     transition: none; /* disables hover animation */
 }
 
-.pageListControllerIcon:hover{
-    color: white;
-    background-image: linear-gradient(to left,#5951f3,#f35167);
-    background-clip : padding-box, border-box;
-    background-origin: border-box;
-    animation : huerotate 6s infinite linear;
+@keyframes steam {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
 }

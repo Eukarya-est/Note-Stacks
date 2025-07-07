@@ -1,7 +1,6 @@
 import './notepages.css'
-import { ServerURL } from "../../context/constant.jsx"
 
-import { useState, useEffect, useContext} from 'react';
+import { useState, useEffect } from 'react';
 
 export default function NotesPages(props) {
 
@@ -13,37 +12,36 @@ export default function NotesPages(props) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [list, setList] = useState();
   
-  
   useEffect(() => {
     setList(props.pages);
   }, [props.pages]);
   
   return (
-      <div className="notePages">
-        <ul className="pageNumberList">
-          <li className="pageNumberListTitle">#</li>
+      <div className="note-pages">
+        <ul className="page-number-list">
+          <li className="page-number-list-title">#</li>
             {(!list || list.length === 0) ? (
               Array.from({ length: 5 }).map((_, i) => (
-                <li className="pageNumberListItem" key={i}>-</li>
+                <li className="page-number-list-item" id="page-number-list-item-id" key={i}>-</li>
               ))
             ) : (Object.entries(list).map(([index, item], i) => {
-                const isDisabled = item[0] === ' - ';
+                const isDisable = item[0] === ' - ';
                 const isSelected = item[0] === props.pageNo;
-                const isHovered = hoveredIndex === i && !isDisabled && !isSelected;
+                const isEnable = hoveredIndex === i && !isDisable && !isSelected;
                 return (
                   <li
                     key={index}
-                    className={[
-                      "pageNumberListItem",
-                      isHovered ? "hovered" : "",
-                      isSelected ? "selected" : "",
-                      isDisabled ? "disabled":""
-                    ].join(" ")}
+                    className={["page",
+                      isEnable ? "-enable" : "",
+                      isSelected ? "-selected" : "",
+                      isDisable ? "-disable" : ""
+                    ].join("")}
+                    id="page-number-list-item-id"
                     onMouseEnter={() => {
-                      if (!isDisabled && !isSelected) setHoveredIndex(i);
+                      if (!isDisable && !isSelected) setHoveredIndex(i);
                     }}
                     onMouseLeave={() => setHoveredIndex(null)}
-                    onClick={!isDisabled && !isSelected ? () => props.setPageNo(item[0]) : undefined}
+                    onClick={!isDisable && !isSelected ? () => props.setPageNo(item[0]) : undefined}
                   >
                     {item[0]}
                   </li>
@@ -51,30 +49,30 @@ export default function NotesPages(props) {
               }))
             }
         </ul>
-        <ul className="pageNameList">
-          <li className="pageNameListTitle">TITLE</li>
+        <ul className="page-name-list">
+          <li className="page-name-list-title">TITLE</li>
             {(!list || list.length === 0) ? (
               Array.from({ length: 5 }).map((_, i) => (
-                <li className="pageNameListItem" key={i}>-</li>
+                <li className="page-name-list-item" id="page-name-list-item-id" key={i}>-</li>
               ))
             ) : (Object.entries(list).map(([index, item], i) => {
-                const isDisabled = item[0] === ' - ';
+                const isDisable = item[0] === ' - ';
                 const isSelected = item[0] === props.pageNo;
-                const isHovered = hoveredIndex === i && !isDisabled && !isSelected;
+                const isEnable = hoveredIndex === i && !isDisable && !isSelected;
                 return (
                   <li
                     key={index}
-                    className={[
-                      "pageNameListItem",
-                      isHovered ? "hovered" : "",
-                      isSelected ? "selected" : "",
-                      isDisabled ? "disabled":""
-                    ].join(" ")}
+                    className={["page",
+                      isEnable ? "-enable" : "",
+                      isSelected ? "-selected" : "",
+                      isDisable ? "-disable" : ""
+                    ].join("")}
+                    id="page-name-list-item-id"
                     onMouseEnter={() => {
-                      if (!isDisabled && !isSelected) setHoveredIndex(i);
+                      if (!isDisable && !isSelected) setHoveredIndex(i);
                     }}
                     onMouseLeave={() => setHoveredIndex(null)}
-                    onClick={!isDisabled && !isSelected ? () => props.setPageNo(item[0]) : undefined}
+                    onClick={!isDisable && !isSelected ? () => props.setPageNo(item[0]) : undefined}
                   >
                     {item[1]}
                   </li>

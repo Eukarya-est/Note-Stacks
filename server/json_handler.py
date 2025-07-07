@@ -3,7 +3,7 @@ import json
 from logger import debug_logger, info_logger, warning_logger, error_logger
 
 
-def loadJson(jsonName):
+def _load_json(jsonName):
 
     info_logger.info(f"Loading {jsonName}...")
 
@@ -17,7 +17,7 @@ def loadJson(jsonName):
     return data
 
 
-def createJson(jsonName, key, value):
+def _create_json(jsonName, key, value):
 
     info_logger.info(f"Creating {jsonName}...")
 
@@ -36,7 +36,7 @@ def createJson(jsonName, key, value):
     file.close()
 
 
-def resetJson(jsonName):
+def _reset_json(jsonName):
 
     info_logger.info(f"Reset {jsonName}...")
 

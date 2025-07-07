@@ -1,7 +1,7 @@
 import './pagelistcontroller.css'
 
 import { BiLeftArrowAlt, BiRightArrowAlt, BiArrowToLeft, BiArrowToRight } from "react-icons/bi";
-import { useState } from 'react'
+import { TbBooks, TbBooksOff } from "react-icons/tb";
 
 export default function PageListController(props) {
 
@@ -11,8 +11,7 @@ export default function PageListController(props) {
   // It also displays the total number of pages available
   // The component uses input to allow the user to enter a page number directly
   // It includes icons for fast forward, fast backward, and regular navigation
-  
-  const [inputValue, setInputValue] = useState(1);
+
 
   const increasePage = () => {
     if (props.pageNo < props.pagesBound) {
@@ -43,29 +42,45 @@ export default function PageListController(props) {
   }
 
   return (
-    <div className="pageListCotroller">
-      <div className="pageListControllerIcons">
-        <BiArrowToLeft 
-          className={`pageListControllerIcon${props.pagesBound === undefined || props.pageNo == 1 ? ' disabled' : ''}`}
-          onClick={props.pageNo > 1 ? fastBackward : undefined}
-        />
-        <BiLeftArrowAlt
-          className={`pageListControllerIcon${props.pagesBound === undefined || props.pageNo == 1 ? ' disabled' : ''}`}
-          onClick={props.pageNo > 1 ? decreasePage : undefined}
-        />
-        <div className='pageNavigator'>
-          <input type="number" name="designedNum" value={props.pageNo == 0 ? 1 : props.pageNo} min="1" max={props.pagesBound == '---' ? 1 : props.pagesBound} onChange={e => props.setPageNo(Number(e.target.value))} />
-          <div className="division"></div>
-          <div className="pageBound">{props.pagesBound === undefined? "---" : props.pagesBound}</div>
+    <div className="page-list-controller">
+      <div className="shelf-toggle-button" id="shelf-toggle-button-id">
+        <div className="icon-wrapper-active">
+        {props.openShelf ?
+          <TbBooks className="shelf-on" id="shelf-icon-id" onClick={props.toggleShelf} />:
+          <TbBooksOff className="shelf-off" id="shelf-icon-id" onClick={props.toggleShelf} />
+        }
         </div>
-        <BiRightArrowAlt 
-          className={`pageListControllerIcon${props.pagesBound === undefined || props.pageNo == props.pagesBound ? ' disabled' : ''}`}
-          onClick={props.pageNo < props.pagesBound ? increasePage : undefined}
-        />
-        <BiArrowToRight
-          className={`pageListControllerIcon${props.pagesBound === undefined || props.pageNo == props.pagesBound ? ' disabled' : ''}`}
-          onClick={props.pageNo < props.pagesBound ? fastForward : undefined}
-        />
+      </div>
+      <div className="page-list-controller-icons">
+        <div className={["icon-wrapper", (props.pagesBound === undefined || props.pageNo == 1) ? "inactive" : "active"].join("-")}>
+          <BiArrowToLeft 
+            id="page-list-controlloer-icon-id"
+            onClick={props.pageNo > 1 ? fastBackward : undefined}
+          />
+        </div>
+        <div className={["icon-wrapper", (props.pagesBound === undefined || props.pageNo == 1) ? "inactive" : "active"].join("-")}>
+          <BiLeftArrowAlt
+            id="page-list-controlloer-icon-id"
+            onClick={props.pageNo > 1 ? decreasePage : undefined}
+          />
+        </div>
+        <div className="page-navigator">
+          <input type="number" name="designated-num" value={props.pageNo == 0 ? 1 : props.pageNo} min="1" max={props.pagesBound == '---' ? 1 : props.pagesBound} onChange={e => props.setPageNo(Number(e.target.value))} />
+          <div className="division"></div>
+          <div className="page-bound">{props.pagesBound === undefined? "---" : props.pagesBound}</div>
+        </div>
+         <div className={["icon-wrapper", (props.pagesBound === undefined || props.pageNo == props.pagesBound) ? "inactive" : "active"].join("-")}>
+          <BiRightArrowAlt 
+            id="page-list-controlloer-icon-id"
+            onClick={props.pageNo < props.pagesBound ? increasePage : undefined}
+          />
+        </div>
+        <div className={["icon-wrapper", (props.pagesBound === undefined || props.pageNo == props.pagesBound) ? "inactive" : "active"].join("-")}>
+          <BiArrowToRight
+            id="page-list-controlloer-icon-id"
+            onClick={props.pageNo < props.pagesBound ? fastForward : undefined}
+          />
+        </div>
       </div>
     </div>
   )
