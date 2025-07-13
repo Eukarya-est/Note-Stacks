@@ -4,7 +4,7 @@ import Desk from './faces/desk/Desk.jsx'
 import NoteShelf from './faces/noteshelf/NoteShelf.jsx'
 import './App.css'
 
-import { BrowserRouter, Routes, Route, Navigate } from "react-router";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
 
