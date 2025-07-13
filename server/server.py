@@ -204,7 +204,7 @@ def _get_page(category, number):
 @app.route('/server/shelf/<category>/<int:number>/<MD>', methods=['GET'])
 def _get_markdown(category, number, MD):
 
-    file_path = f'../markdown/{category}/{MD}'
+    file_path = f'../markdowns/{category}/{MD}'
 
     try:
         with open(file_path, "r", encoding="utf-8") as file:
