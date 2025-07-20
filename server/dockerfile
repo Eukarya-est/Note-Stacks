@@ -1,0 +1,44 @@
+#==================================#
+#   NOTE-STACKS BACK-END SETTING   #
+#==================================#
+
+# Use a Python base image
+FROM python:3.12-slim-bookworm
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Install build dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements file and install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application code
+COPY . .
+
+# Create a directory for logs
+RUN mkdir -p /app/logs
+
+# Expose the Flask port
+EXPOSE 5001
+
+# Set environment variables for Flask
+ENV FLASK_APP=server.py
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_RUN_PORT=5001
+
+# Run the Flask app
+CMD ["flask", "run"]
+
+#==================================#
+
+
+
+
+
+

@@ -2,33 +2,21 @@ from flask import Flask, jsonify, Response
 
 import os
 from logger import debug_logger, info_logger, warning_logger, error_logger
-from json_handler import _load_json, _create_json, _reset_json
-from flaskext.mysql import MySQL
+from json_handler import load_json, create_json, reset_json
+from db_manager import _DBManager
 
 app = Flask(__name__)
 
-mysql = MySQL(app)
-dbconfig = _load_json('mysql.json')
-app.config['MYSQL_HOST'] = dbconfig['host']
-app.config['MYSQL_DATABASE_USER'] = dbconfig['user']
-app.config['MYSQL_DATABASE_PASSWORD'] = dbconfig['password']
-app.config['MYSQL_DATABASE_DB'] = dbconfig['db']
-app.config['MYSQL_DATABASE_PORT'] = dbconfig['port']
-mysql.init_app(app)
+mysql = _DBManager()
 
-def _get_upper_limit(category):
+def get_upper_limit(category):
     carrier = {}
-    
+
     try:
-        cursor = mysql.connect().cursor()
-        
-        query = "SELECT MAX(NUM) FROM page_test WHERE COVER = %s AND DISPLAY = 1"
-        cursor.execute(query, category)
-        upper_limit = cursor.fetchall()
-        cursor.close()
+        upper_limit = mysql.query_upper_limit()
 
     except Exception as error:
-        error_logger.error(f"Failed: SELECT MAX(NUM) FROM page_test WHERE COVER = {category} AND DISPLAY = 1")
+        error_logger.error(f"Failed to query upper limit for category; {category}")
         error_logger.error(error)
 
     if not upper_limit or not upper_limit[0][0]:
@@ -42,10 +30,12 @@ def _get_upper_limit(category):
     return carrier
 
 @app.route('/server/shelf', methods=['GET'])
-def _get_shelf_category():
+def get_shelf_category():
 
     _make_dir = os.listdir('../markdown')
-    shelf_category = _load_json('shelf_category.json')
+    shelf_category = load_json('shelf_category.json')
+
+    mysql.populate_db()
 
     if not _make_dir:
         error_logger.error("No markdown files found in the directory.")
@@ -55,7 +45,7 @@ def _get_shelf_category():
     rebuild_flag = False
     for key in shelf_category:
         if shelf_category[key] not in _make_dir:
-            _reset_json('shelf_category.json')
+            reset_json('shelf_category.json')
             rebuild_flag = True
             info_logger.info("There is difference from shelf_category and markdown directories, Reset Json")
             break;
@@ -67,11 +57,11 @@ def _get_shelf_category():
     # If 'shelfCategory.json' does not exist, create it
     if not os.path.exists('shelf_category.json'):
         info_logger.info("'shelf_category.json' does not exist, creating a new one...")
-        _reset_json('shelf_category.json')
+        reset_json('shelf_category.json')
         for dir in _make_dir:
-            _create_json('shelf_category.json', dir_count, dir)
+            create_json('shelf_category.json', dir_count, dir)
             dirCount += 1
-        shelf_category = _load_json('shelf_category.json')
+        shelf_category = load_json('shelf_category.json')
     
     # If 'shelfCategory.json' is not a valid JSON object, return an error
     if not isinstance(shelf_category, dict):
@@ -90,19 +80,19 @@ def _get_shelf_category():
     if rebuild_flag:
         info_logger.info("Rebuilding 'shelf_category.json'...")
         for dir in _make_dir:
-            _create_json('shelf_category.json', dir_count, dir)
+            create_json('shelf_category.json', dir_count, dir)
             dir_count += 1
-        shelf_category = _load_json('shelf_category.json')
+        shelf_category = load_json('shelf_category.json')
 
     return shelf_category
 
 @app.route('/server/shelf/<category>', methods=['GET'])
-def _get_default_pages(category):
+def get_default_pages(category):
     carrier = {}
     upper_limit = ''
 
     try:
-        response = _get_upper_limit(category)
+        response = get_upper_limit(category)
         upper_limit = response['bound']
 
     except Exception as error:
@@ -114,16 +104,10 @@ def _get_default_pages(category):
         range_pre = 1
 
     try:
-        cursor = mysql.connect().cursor()
-
-        query = "SELECT NUM, TITLE FROM page_test WHERE (NUM BETWEEN %s AND %s) AND COVER = %s AND DISPLAY = 1 ORDER BY NUM DESC"
-        var = (range_pre, range_post, category)
-        cursor.execute(query, var)
-        pages = cursor.fetchall()
-        cursor.close()
+        pages = mysql.query_pages(range_pre, range_post, category)
     
     except Exception as error:
-        error_logger.error(f"Failed: SELECT * FROM page_test WHERE (NUM BETWEEN {range_pre} AND {upper_limit}) AND COVER = {category} AND DISPLAY = 1 ORDER BY NUM DESC")
+        error_logger.error(f"Faild to query default pages for category; {category} / range_pre: {range_pre} / range_post: {range_post}")
         error_logger.error(error)
 
     while(len(pages) != 5):
@@ -140,13 +124,13 @@ def _get_default_pages(category):
     return jsonify(carrier)
 
 @app.route('/server/shelf/<category>/<int:number>', methods=['GET'])
-def _get_pages(category, number):
+def get_pages(category, number):
     upper_limit = ''
     range_pre = number - 2
     range_post = number + 2
 
     try:
-        response = _get_upper_limit(category)
+        response = get_upper_limit(category)
         upper_limit = response['bound']
 
     except Exception as error:
@@ -160,16 +144,10 @@ def _get_pages(category, number):
     debug_logger.debug(f"{diff}")
 
     try:
-        cursor = mysql.connect().cursor()   
-
-        query = "SELECT NUM, TITLE FROM page_test WHERE (NUM BETWEEN %s AND %s) AND COVER = %s AND DISPLAY = 1 ORDER BY NUM DESC"
-        var = (range_pre, range_post, category)
-        cursor.execute(query, var)
-        pages = cursor.fetchall()
-        cursor.close()
+        pages = mysql.query_pages(range_pre, range_post, category)
     
     except Exception as error:
-        error_logger.error(f"Failed: SELECT * FROM page_test WHERE (NUM BETWEEN {number - 2} AND {number + 2}) AND COVER = {category} AND DISPLAY = 1 ORDER BY NUM DESC")
+        error_logger.error(f"Faild to query pages for category; {category} / range_pre: {range_pre} / range_post: {range_post}")
         error_logger.error(error)
 
     while(len(pages) != 5):
@@ -182,19 +160,13 @@ def _get_pages(category, number):
     return jsonify(pages)
 
 @app.route('/server/shelf/<category>/<int:number>/page', methods=['GET'])
-def _get_page(category, number):
+def get_page(category, number):
 
     try:
-        cursor = mysql.connect().cursor()
-
-        query = "SELECT * FROM page_test WHERE NUM = %s AND COVER = %s AND DISPLAY = 1"
-        var = (number, category)
-        cursor.execute(query, var)
-        page = cursor.fetchall()
-        cursor.close()
+        page = mysql.query_pages(number, category)
     
     except Exception as error:
-        error_logger.error(f"Failed: SELECT * FROM page_test WHERE NUM = %s AND COVER = %s AND DISPLAY = 1")
+        error_logger.error(f"Faild to query page for category; {category} / page: {number}")
         error_logger.error(error)
 
     debug_logger.debug(f"{page[0]}")
@@ -202,7 +174,7 @@ def _get_page(category, number):
     return jsonify(page[0])
 
 @app.route('/server/shelf/<category>/<int:number>/<MD>', methods=['GET'])
-def _get_markdown(category, number, MD):
+def get_markdown(category, number, MD):
 
     file_path = f'../markdowns/{category}/{MD}'
 

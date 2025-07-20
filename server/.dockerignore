@@ -1,0 +1,9 @@
+logs
+markdown
+properties
+__pycache__
+
+dockerfile
+.dockerignore
+
+gitignore
