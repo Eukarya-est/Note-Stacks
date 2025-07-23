@@ -1,7 +1,5 @@
-env
+.env
 __pycache__
 
-logs
-markdown
 properties
 

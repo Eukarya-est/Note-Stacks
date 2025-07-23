@@ -3,11 +3,12 @@ from flask import Flask, jsonify, Response
 import os
 from logger import debug_logger, info_logger, warning_logger, error_logger
 from json_handler import load_json, create_json, reset_json
-from db_manager import _DBManager
+from db_manager import DBManager
+
 
 app = Flask(__name__)
 
-mysql = _DBManager()
+mysql = DBManager()
 
 def get_upper_limit(category):
     carrier = {}
@@ -32,36 +33,35 @@ def get_upper_limit(category):
 @app.route('/server/shelf', methods=['GET'])
 def get_shelf_category():
 
-    _make_dir = os.listdir('../markdown')
+    make_dir = os.listdir('./markdown')
+
+    dir_count = 1
+    # If 'shelfCategory.json' does not exist, create it
+    if not os.path.exists('shelf_category.json'):
+        info_logger.info("'shelf_category.json' does not exist, creating a new one...")
+        reset_json('shelf_category.json')
+        for dir in make_dir:
+            create_json('shelf_category.json', dir_count, dir)
+            dirCount += 1
+
     shelf_category = load_json('shelf_category.json')
 
-    mysql.populate_db()
-
-    if not _make_dir:
+    if not make_dir:
         error_logger.error("No markdown files found in the directory.")
         return "No markdown files found", 404
     
     dir_count = 1
     rebuild_flag = False
     for key in shelf_category:
-        if shelf_category[key] not in _make_dir:
+        if shelf_category[key] not in make_dir:
             reset_json('shelf_category.json')
             rebuild_flag = True
             info_logger.info("There is difference from shelf_category and markdown directories, Reset Json")
-            break;
+            break
         else:
             dir_count += 1
 
     """ Error handling for 'shelf_category.json' """
-
-    # If 'shelfCategory.json' does not exist, create it
-    if not os.path.exists('shelf_category.json'):
-        info_logger.info("'shelf_category.json' does not exist, creating a new one...")
-        reset_json('shelf_category.json')
-        for dir in _make_dir:
-            create_json('shelf_category.json', dir_count, dir)
-            dirCount += 1
-        shelf_category = load_json('shelf_category.json')
     
     # If 'shelfCategory.json' is not a valid JSON object, return an error
     if not isinstance(shelf_category, dict):
@@ -69,7 +69,7 @@ def get_shelf_category():
             return "Invalid 'shelfCategory.json' format", 500
     
     # If 'shelfCategory.json' does not match the markdown diretories, return an error
-    if len(_make_dir) != len(shelf_category):
+    if len(make_dir) != len(shelf_category):
         rebuildFlag = True
     
     # If 'shelfCategory.json' has duplicate keys, return an error
@@ -79,7 +79,7 @@ def get_shelf_category():
     
     if rebuild_flag:
         info_logger.info("Rebuilding 'shelf_category.json'...")
-        for dir in _make_dir:
+        for dir in make_dir:
             create_json('shelf_category.json', dir_count, dir)
             dir_count += 1
         shelf_category = load_json('shelf_category.json')

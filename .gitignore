@@ -1,3 +1,9 @@
-
+.gitignore
 docker-build.sh
 docker-rm.sh
+mysql-w-docker-bk.sh
+docker-compose.yml
+
+db_password.txt
+
+deprecated
