@@ -4,6 +4,9 @@ docker-rm.sh
 mysql-w-docker-bk.sh
 docker-compose.yml
 
-db_password.txt
+db_*.txt
+ngxinx
 
 deprecated
+init.sql
+my.cnf

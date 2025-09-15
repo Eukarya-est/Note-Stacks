@@ -1,6 +1,6 @@
 server{
     listen 80;
-    server_name eukarya.dev;
+    server_name front-end;
 
     root /usr/share/nginx/html;
     index index.html;
@@ -11,6 +11,6 @@ server{
 
     # proxy_pass configuration
     location /server {
-        proxy_pass http://localhost:5001;
+        proxy_pass http://back-end:6556;
     }
 }

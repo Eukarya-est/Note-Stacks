@@ -2,7 +2,7 @@
     display: flex;
     align-items: top center;
     justify-content: center;
-    background: url(../../Images/img00.jpg);
+    background: url(../../Images/bg-img.jpg);
     background-repeat: no-repeat;
     background-position: top;
     background-size: 100%;
@@ -50,7 +50,6 @@
 
 .link-icon-list{
     display: flex;
-    list-style: none;
     margin-top: 20px;
 }
 

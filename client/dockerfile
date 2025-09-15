@@ -13,7 +13,7 @@ WORKDIR /app
 COPY . .
 
 # Install dependenies
-RUN npm install
+RUN npm install --force
 
 # Build the vite 
 RUN npm run build
@@ -26,7 +26,7 @@ FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Copy custom Nginx configuration file
-COPY /nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY conf /etc/nginx/conf.d/default.conf
 
 # Expose port
 EXPOSE 80

@@ -16,7 +16,6 @@
     z-index: 10;
 }
 
-
 .shelf-opened{
     margin-top: 2px;
     z-index: 98;
@@ -43,7 +42,7 @@
     margin-bottom: 5px;
     padding: 5px;
     color:white;
-    background: url(../../Images/img00.jpg);
+    background: url(../../Images/bg-img.jpg);
     background-repeat: no-repeat;   
     background-clip: border-box; 
     background-position: left;
@@ -55,6 +54,16 @@
     display: block;
     padding: 0;
     list-style: none;
+}
+
+.loading-img{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding: 5px;
+    width: 80px;
+    height: 80px;
 }
 
 .shelf-item{

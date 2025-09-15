@@ -1,3 +1,6 @@
 Flask==3.1.1
-mysql-connector==2.2.9
-mysql-connector-python== 9.3.0
+Flask-SQLAlchemy==3.0.5
+sqlalchemy==2.0.20
+pymysql==1.1.0
+mysqlclient==2.1.1
+gunicorn==20.1.0

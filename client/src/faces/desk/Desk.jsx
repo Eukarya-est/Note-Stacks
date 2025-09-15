@@ -15,15 +15,15 @@ export default function Desk() {
             <li className="profile-list-item">Eukarya</li>
           </ul>
           <ul className="link-list">TEST WEBPAGE
-            <li className="link-list-item">LINK1</li>
-            <li className="link-list-item">LINK2</li>
+            <li className="link-list-item"><a href="https://eukarya-est.github.io/digitRecognizerWebApp/">digitRecognizerWebApp</a></li>
+            <li className="link-list-item"><a href="https://eukarya-est.github.io/CT-Engineering-Helium/">CT-Engineering-Helium</a></li>
           </ul>
           <ul className="link-icon-list">
             <div className="icon-wrapper">
-              <li className="link-icon-list-item"><FaLinkedin /></li>
+              <li className="link-icon-list-item"><a href="https://www.linkedin.com/in/dongkyun-park-306945258/"><FaLinkedin /></a></li>
             </div>
             <div className="icon-wrapper">
-              <li className="link-icon-list-item"><FaGithub /></li>
+              <li className="link-icon-list-item"><a href="https://github.com/Eukarya-est"><FaGithub /></a></li>
             </div>
           </ul>
         </div>

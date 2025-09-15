@@ -27,7 +27,7 @@
     margin: 0px 5px 0px 0px;
     padding: 5px;
     color: white;
-    background: url(../../Images/img00.jpg);
+    background: url(../../Images/bg-img.jpg);
     background-repeat: no-repeat;   
     background-clip: border-box; 
     background-position: left;
@@ -57,7 +57,7 @@
     margin: 0px 5px 0px 0px;
     padding: 5px;
     color: white;
-    background: url(../../Images/img00.jpg);
+    background: url(../../Images/bg-img.jpg);
     background-repeat: no-repeat;   
     background-clip: border-box; 
     background-position: left;
@@ -91,7 +91,7 @@
     margin: 0px 5px 0px 0px;
     padding: 5px;
     color: white;
-    background: url(../../Images/img00.jpg);
+    background: url(../../Images/bg-img.jpg);
     background-repeat: no-repeat;   
     background-clip: border-box; 
     background-position: left;
@@ -123,7 +123,7 @@
     height: 15px;
     margin: 0px 5px 0px 0px;
     padding: 5px;
-    background: url(../../Images/img00.jpg);
+    background: url(../../Images/bg-img.jpg);
     background-repeat: no-repeat;   
     background-clip: border-box; 
     background-position: left;
@@ -152,8 +152,13 @@
     margin: 0px 5px 0px 0px;
     padding: 5px;
     min-height: 500px;
+    white-space: 'pre-wrap';
+    font-size: 12px;
 }
 
-.markdown {
-    white-space: 'pre-wrap';
+code {
+    width: 100%;
+    background-color: #dadada;
+    padding: 10px 0px 10px 0px;
+    border: 0.5px solid #949a9b
 }

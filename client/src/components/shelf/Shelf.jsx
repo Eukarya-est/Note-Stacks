@@ -1,6 +1,5 @@
 import './shelf.css'
-
-import { TbBooks, TbBooksOff } from "react-icons/tb";
+import loadImg from '../../Images/load-img.gif'
 
 export default function Shelf(props) {
 
@@ -19,7 +18,9 @@ export default function Shelf(props) {
           </li>
           <ul className="shelf-item-list">
             {props.shelfCategory.length === 0 ? (
-              <li className="shelfLoad">Loading..</li> 
+              <li className="shelfLoad">
+                <img className="loading-img" id="loading-img-id" src={ loadImg } alt="logo" />
+              </li> 
             ) : (
               Object.entries(props.shelfCategory).map(([index, category]) => (     
                 <li key={index} className="shelf-item" onClick={() => props.setCategory(category)}>
