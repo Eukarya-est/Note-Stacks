@@ -27,13 +27,15 @@ def get_shelf_category():
     try:
         with engine.connect() as connection:
             result = connection.execute(text(SqlQuery.select_all_cover.value)).fetchall()
+            info_logger.info(f"result: {result}")
             for category in result:
                 shelf_category.append(category[0])
     
     except Exception as error:
         error_logger.error("Faild to query shelf category")
         error_logger.error(error)
-
+    
+    info_logger.info(f"shelf_category: {shelf_category}")
     return shelf_category
 
 @app.route('/server/shelf/<category>', methods=['GET'])
@@ -44,6 +46,7 @@ def get_default_pages(category):
 
     try:
         upper_limit = get_upper_limit(category)
+        info_logger.info(f"upper_limit: {upper_limit}")
 
     except Exception as error:
         error_logger.error(error)
@@ -57,6 +60,7 @@ def get_default_pages(category):
         with engine.connect() as connection:
             result = connection.execute(text(SqlQuery.select_pages.value), 
                                        {'rangePre': range_pre, 'rangePost': range_post, 'category': category}).fetchall()
+            info_logger.info(f"result: {result}")
             for page in result:
                 pages.append(list(page))
     
@@ -70,6 +74,9 @@ def get_default_pages(category):
     carrier['category']= category
     carrier['bound'] = upper_limit
     carrier['pages'] = pages
+    info_logger.info(f"category: {category}")
+    info_logger.info(f"bound: {upper_limit}")
+    info_logger.info(f"pages: {pages}")
 
     return carrier
 
@@ -82,6 +89,7 @@ def get_pages(category, number):
 
     try:
         upper_limit = get_upper_limit(category)
+        info_logger.info(f"upper_limit: {upper_limit}")
 
     except Exception as error:
         error_logger.error(error)
@@ -97,6 +105,7 @@ def get_pages(category, number):
         with engine.connect() as connection:
             result = connection.execute(text(SqlQuery.select_pages.value), 
                                         {'rangePre': range_pre, 'rangePost': range_post, 'category': category}).fetchall()
+            info_logger.info(f"result: {result}")
             for page in result:
                 pages.append(list(page))
 
@@ -107,6 +116,7 @@ def get_pages(category, number):
     while(len(pages) != 5):
         pages.append([" - " ," - "])
     
+    info_logger.info(f"pages: {pages}")
     return pages
 
 @app.route('/server/shelf/<category>/<int:number>/page', methods=['GET'])
@@ -117,12 +127,14 @@ def get_page(category, number):
         with engine.connect() as connection:
             result = connection.execute(text(SqlQuery.select_page.value), 
                                       {'category1': category, 'number': number, 'category2': category}).fetchall()
+            info_logger.info(f"result: {result}")
             page.append(list(result))
 
     except Exception as error:
         error_logger.error(f"Faild to query page for category; {category} / page: {number}")
         error_logger.error(error)
 
+    info_logger.info(f"page: {page}")
     return page
 
 @app.route('/server/shelf/<category>/<int:number>/<filename>', methods=['GET'])
@@ -153,6 +165,7 @@ def get_upper_limit(category):
         with engine.connect() as connection:
             result = connection.execute(
                 text(SqlQuery.select_max_num.value), {'category': category}).fetchall()
+            info_logger.info(f"result: {result}")
             upper_limit = result[0][0]
 
     except Exception as error:
