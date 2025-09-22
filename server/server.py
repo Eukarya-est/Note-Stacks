@@ -111,6 +111,7 @@ def get_pages(category, number):
 
 @app.route('/server/shelf/<category>/<int:number>/page', methods=['GET'])
 def get_page(category, number):
+    page = None
 
     try:
         with engine.connect() as connection:
