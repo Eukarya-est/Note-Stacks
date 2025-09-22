@@ -1,5 +1,5 @@
-import './shelf.css'
-import loadImg from '../../Images/load-img.gif'
+import './shelf.css';
+import loadImg from '../../Images/load-img.gif';
 
 export default function Shelf(props) {
 

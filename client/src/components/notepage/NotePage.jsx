@@ -1,10 +1,15 @@
-import './notepage.css'
+import './notepage.css';
+import './style-base.css';
+import './style-codemirror.css';
+import './style-mathjax-ni.css';
+import './style-mathjax.css';
+import './style-theme_css.css';
 
-import MarkdownWithKatex from '../markdown/Markdown';
 import ReactHtmlParser from 'react-html-parser';
-import { ServerURL } from "../../context/constant.jsx"
+import { ServerURL } from "../../context/constant.jsx";
 
 import { useState, useEffect, useContext } from 'react';
+//import NotePageContent from '../notepagecontent/NotePageContent.jsx';
 
 export default function NotePage(props) {
 
@@ -26,6 +31,10 @@ export default function NotePage(props) {
           });
 }
   }, [props.page]);
+
+  // var category = props.category
+  // var pageNo = props.pageNo
+  // var page = props.page
 
   return (
     <div className="note-page">

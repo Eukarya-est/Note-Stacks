@@ -13,7 +13,7 @@ WORKDIR /app
 COPY . .
 
 # Install dependenies
-RUN npm install --force
+RUN npm install
 
 # Build the vite 
 RUN npm run build

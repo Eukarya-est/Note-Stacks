@@ -1,5 +1,5 @@
-import './desk.css'
-import profileImg from '../../Images/profile-img.png'
+import './desk.css';
+import profileImg from '../../Images/profile-img.png';
 
 import { FaLinkedin, FaGithub }  from "react-icons/fa";
 
@@ -15,8 +15,8 @@ export default function Desk() {
             <li className="profile-list-item">Eukarya</li>
           </ul>
           <ul className="link-list">TEST WEBPAGE
-            <li className="link-list-item"><a href="https://eukarya-est.github.io/digitRecognizerWebApp/">digitRecognizerWebApp</a></li>
-            <li className="link-list-item"><a href="https://eukarya-est.github.io/CT-Engineering-Helium/">CT-Engineering-Helium</a></li>
+            <li className="link-list-item"><a target="_blank" rel="noopener noreferrer" href="https://eukarya-est.github.io/Digit-Recognizer-Web-App/">Digit-Recognizer-Web-App</a></li>
+            <li className="link-list-item"><a target="_blank" rel="noopener noreferrer" href="https://eukarya-est.github.io/CT-Engineering-Helium/">CT-Engineering-Helium</a></li>
           </ul>
           <ul className="link-icon-list">
             <div className="icon-wrapper">

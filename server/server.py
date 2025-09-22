@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify, Response
+from flask import Flask, Response, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, text
 
@@ -139,6 +139,11 @@ def get_doc(category, number, filename):
     except Exception as error:
         error_logger.error(f"Failed: Load Markdown")
         error_logger.error(error)
+
+@app.route('/server/<category>/imgs/<filename>')
+def serve_image(filename, category):
+    file_path = f'{PATH.HTMLS}/{category}/imgs'
+    return send_from_directory(file_path, filename)
 
 def get_upper_limit(category):
     upper_limit = 1

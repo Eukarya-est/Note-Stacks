@@ -1,11 +1,11 @@
-import './noteshelf.css'
-import Shelf from '../../components/shelf/Shelf'
-import NotePageController from '../../components/pagelistcontroller/PageListController'
-import NotePages from '../../components/notepages/NotePages'
-import NotePage from '../../components/notepage/NotePage'
-import { ServerURL, ShelfURL } from "../../context/constant.jsx"
+import './noteshelf.css';
+import Shelf from '../../components/shelf/Shelf';
+import NotePageController from '../../components/pagelistcontroller/PageListController';
+import NotePages from '../../components/notepages/NotePages';
+import NotePage from '../../components/notepage/NotePage';
+import { ServerURL, ShelfURL } from "../../context/constant.jsx";
 
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 
 export default function Notes() {

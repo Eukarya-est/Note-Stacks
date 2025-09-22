@@ -42,13 +42,29 @@
     color: #D9D9D9;
 }
 
+a {
+    color: #D9D9D9;
+    text-decoration: none;
+}
+
 .link-list{
-    list-style: none;
     color: #D9D9D9;
     margin-top: 20px;
 }
 
+.link-list-item{
+    list-style: square;
+    color: #D9D9D9;
+    margin: 5px;
+}
+
+.link-list-item:hover{
+    color: #141a30;
+    background-color: #f1f1f1;
+}
+
 .link-icon-list{
+    list-style: none;
     display: flex;
     margin-top: 20px;
 }

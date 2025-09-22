@@ -1,4 +1,4 @@
-import './topbar.css'
+import './topbar.css';
 
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";

@@ -2,7 +2,7 @@
     margin: 20px;
     padding-bottom: 30px;
     background-color: #fbfbfb;
-    font-size: 14px;
+    font-size: 18px;
     border-top: 2px solid #141a30;
     border-bottom: 2px solid #141a30;
     grid-row: 3;
@@ -143,7 +143,7 @@
 .content-info{
     padding: 0;
     display: flex;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: "PT Serif", 'Times New Roman', 'SF Pro', Times, serif;
     list-style: none;
 }
 
@@ -152,13 +152,12 @@
     margin: 0px 5px 0px 0px;
     padding: 5px;
     min-height: 500px;
-    white-space: 'pre-wrap';
-    font-size: 12px;
 }
 
-code {
+/* code {
     width: 100%;
     background-color: #dadada;
-    padding: 10px 0px 10px 0px;
+    padding: 5px 5px 5px 5px;
+    margin: 5px 0px 5px 0px;
     border: 0.5px solid #949a9b
-}
+} */

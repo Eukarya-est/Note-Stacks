@@ -1,4 +1,4 @@
-import './pagelistcontroller.css'
+import './pagelistcontroller.css';
 
 import { BiLeftArrowAlt, BiRightArrowAlt, BiArrowToLeft, BiArrowToRight } from "react-icons/bi";
 import { TbBooks, TbBooksOff } from "react-icons/tb";
