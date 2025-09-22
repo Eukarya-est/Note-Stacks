@@ -111,13 +111,13 @@ def get_pages(category, number):
 
 @app.route('/server/shelf/<category>/<int:number>/page', methods=['GET'])
 def get_page(category, number):
-    page = None
+    page = []
 
     try:
         with engine.connect() as connection:
             result = connection.execute(text(SqlQuery.select_page.value), 
                                       {'category1': category, 'number': number, 'category2': category}).fetchall()
-            page = list(result[0])
+            page.append(list(result[0]))
 
     except Exception as error:
         error_logger.error(f"Faild to query page for category; {category} / page: {number}")
