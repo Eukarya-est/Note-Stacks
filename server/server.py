@@ -128,7 +128,7 @@ def get_page(category, number):
             result = connection.execute(text(SqlQuery.select_page.value), 
                                       {'category1': category, 'number': number, 'category2': category}).fetchall()
             info_logger.info(f"result: {result}")
-            page.append(list(result))
+            page.append(list(result[0]))
 
     except Exception as error:
         error_logger.error(f"Faild to query page for category; {category} / page: {number}")
