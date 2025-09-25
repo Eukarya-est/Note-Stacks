@@ -2,7 +2,7 @@ import './desk.css';
 import profileImg from '../../Images/profile-img.png';
 
 import { FaLinkedin, FaGithub }  from "react-icons/fa";
-import linkedin from '../../Images/likedin.svg';
+import linkedin from '../../Images/linkedin.svg';
 import github from '../../Images/github.svg';
 
 export default function Desk() {
