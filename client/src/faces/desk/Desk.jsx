@@ -23,13 +23,13 @@ export default function Desk() {
           <ul className="link-icon-list">
             <div className="icon-wrapper">
               <li className="link-icon-list-item"><a href="https://www.linkedin.com/in/dongkyun-park-306945258/">
-                <img className="icon-img" id="icon-img-id" src= { github } ></img>
+                <img className="icon-img" id="icon-img-id" src= { linkedin } ></img>
                 {/* <FaLinkedin /> */}
               </a></li>
             </div>
             <div className="icon-wrapper">
               <li className="link-icon-list-item"><a href="https://github.com/Eukarya-est">
-                <img className="icon-img" id="icon-img-id" src= { linkedin } ></img>
+                <img className="icon-img" id="icon-img-id" src= { github } ></img>
               {/* <FaGithub /> */}
               </a></li>
             </div>
