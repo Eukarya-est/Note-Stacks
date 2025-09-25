@@ -2,8 +2,8 @@ import './desk.css';
 import profileImg from '../../Images/profile-img.png';
 
 import { FaLinkedin, FaGithub }  from "react-icons/fa";
-import linkedin from '../../Images/linkedin.svg';
-import github from '../../Images/github.svg';
+import linkedin from '../../Images/linkedin.png';
+import github from '../../Images/github.png';
 
 export default function Desk() {
   return (
@@ -23,13 +23,13 @@ export default function Desk() {
           <ul className="link-icon-list">
             <div className="icon-wrapper">
               <li className="link-icon-list-item"><a href="https://www.linkedin.com/in/dongkyun-park-306945258/">
-                <img id="icon-img" src= { github } ></img>
+                <img className="icon-img" id="icon-img-id" src= { github } ></img>
                 {/* <FaLinkedin /> */}
               </a></li>
             </div>
             <div className="icon-wrapper">
               <li className="link-icon-list-item"><a href="https://github.com/Eukarya-est">
-                <img id="icon-img" src= { linkedin } ></img>
+                <img className="icon-img" id="icon-img-id" src= { linkedin } ></img>
               {/* <FaGithub /> */}
               </a></li>
             </div>
