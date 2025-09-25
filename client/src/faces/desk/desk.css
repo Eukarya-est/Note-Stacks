@@ -108,6 +108,11 @@ a {
 	filter: blur(5px);
 }
 
+.icon-img{
+    width: 28px;
+    height: 28px;
+}
+
 @keyframes steam {
     0% {
         background-position: 0 0;
