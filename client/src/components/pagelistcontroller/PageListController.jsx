@@ -51,12 +51,11 @@ export default function PageListController(props) {
     <div className="page-list-controller">
       <div className="shelf-toggle-button" id="shelf-toggle-button-id">
         <div className="icon-wrapper-active">
-        {props.openShelf ?
-          // <TbBooks className="shelf-on" id="shelf-icon-id" onClick={props.toggleShelf} />
-          <img className="shelf-on" id="shelf-icon-id" src= { stacks } onClick={props.toggleShelf}></img>:
-          <img className="shelf-off" id="shelf-icon-id" src= { openBook } onClick={props.toggleShelf}></img>
-          // <TbBooksOff className="shelf-off" id="shelf-icon-id" onClick={props.toggleShelf} />
-        }
+        {/* {props.openShelf ?
+          <TbBooks className="shelf-on" id="shelf-icon-id" onClick={props.toggleShelf} />:
+          <TbBooksOff className="shelf-off" id="shelf-icon-id" onClick={props.toggleShelf} />
+        } */}
+          <img className={props.openShelf ? "shelf-on":"shelf-off"} id="shelf-icon-id" src={props.openShelf ? stacks:openBook} onClick={props.toggleShelf}></img>:
         </div>
       </div>
       <div className="page-list-controller-icons">
@@ -65,14 +64,14 @@ export default function PageListController(props) {
             id="page-list-controller-icon-id"
             onClick={props.pageNo > 1 ? fastBackward : undefined}
           /> */}
-          <img id="page-list-controller-icon-id" src= { leftXArr } onClick={props.pageNo > 1 ? fastBackward : undefined}></img>
+          <img id="page-list-controller-icon-id" src= {leftXArr} onClick={props.pageNo > 1 ? fastBackward : undefined}></img>
         </div>
         <div className={["icon-wrapper", (props.pagesBound === undefined || props.pageNo == 1) ? "inactive" : "active"].join("-")}>
           {/* <BiLeftArrowAlt
             id="page-list-controlloer-icon-id"
             onClick={props.pageNo > 1 ? decreasePage : undefined}
           /> */}
-          <img id="page-list-controller-icon-id" src= { leftArr } onClick={props.pageNo > 1 ? decreasePage : undefined}></img>
+          <img id="page-list-controller-icon-id" src= {leftArr} onClick={props.pageNo > 1 ? decreasePage : undefined}></img>
         </div>
         <div className="page-navigator">
           <input type="number" name="designated-num" value={props.pageNo == 0 ? 1 : props.pageNo} min="1" max={props.pagesBound == '---' ? 1 : props.pagesBound} onChange={e => props.setPageNo(Number(e.target.value))} />
@@ -84,14 +83,14 @@ export default function PageListController(props) {
             id="page-list-controlloer-icon-id"
             onClick={props.pageNo < props.pagesBound ? increasePage : undefined}
           /> */}
-          <img id="page-list-controller-icon-id" src= { rightArr } onClick={props.pageNo < props.pagesBound ? increasePage : undefined}></img>
+          <img id="page-list-controller-icon-id" src= {rightArr} onClick={props.pageNo < props.pagesBound ? increasePage : undefined}></img>
         </div>
         <div className={["icon-wrapper", (props.pagesBound === undefined || props.pageNo == props.pagesBound) ? "inactive" : "active"].join("-")}>
           {/* <BiArrowToRight
             id="page-list-controlloer-icon-id"
             onClick={props.pageNo < props.pagesBound ? fastForward : undefined}
           /> */}
-          <img id="page-list-controller-icon-id" src= { rightXArr } onClick={props.pageNo < props.pagesBound ? fastForward : undefined}></img>
+          <img id="page-list-controller-icon-id" src= {rightXArr} onClick={props.pageNo < props.pagesBound ? fastForward : undefined}></img>
         </div>
       </div>
     </div>
