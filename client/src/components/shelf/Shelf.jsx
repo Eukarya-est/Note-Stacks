@@ -8,7 +8,6 @@ export default function Shelf(props) {
   // It also includes a toggle button to open or close the shelf
   // The shelf categories are displayed as a list, and clicking on a category sets it as the selected category
   
-
   return (
     <div className={props.openShelf ? "shelf-container-opend": "shelf-container-closed"}>
       <nav className={props.openShelf ? "shelf-opend": "shelf-closed"}>

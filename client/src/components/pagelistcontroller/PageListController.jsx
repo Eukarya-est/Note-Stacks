@@ -2,6 +2,12 @@ import './pagelistcontroller.css';
 
 import { BiLeftArrowAlt, BiRightArrowAlt, BiArrowToLeft, BiArrowToRight } from "react-icons/bi";
 import { TbBooks, TbBooksOff } from "react-icons/tb";
+import openBook from '../../Images/oper-book.png';
+import stacks from '../../Images/stacks.png';
+import leftXArr from '../../Images/rewind.png';
+import leftArr from '../../Images/arrow-left.png';
+import rightArr from '../../Images/arrow-right.png';
+import rightXArr from '../../Images/fast-forward.png';
 
 export default function PageListController(props) {
 
@@ -46,23 +52,27 @@ export default function PageListController(props) {
       <div className="shelf-toggle-button" id="shelf-toggle-button-id">
         <div className="icon-wrapper-active">
         {props.openShelf ?
-          <TbBooks className="shelf-on" id="shelf-icon-id" onClick={props.toggleShelf} />:
-          <TbBooksOff className="shelf-off" id="shelf-icon-id" onClick={props.toggleShelf} />
+          // <TbBooks className="shelf-on" id="shelf-icon-id" onClick={props.toggleShelf} />
+          <img className="shelf-on" id="shelf-icon-id" src= { stacks } onClick={props.toggleShelf}></img>:
+          <img className="shelf-off" id="shelf-icon-id" src= { openBook } onClick={props.toggleShelf}></img>
+          // <TbBooksOff className="shelf-off" id="shelf-icon-id" onClick={props.toggleShelf} />
         }
         </div>
       </div>
       <div className="page-list-controller-icons">
         <div className={["icon-wrapper", (props.pagesBound === undefined || props.pageNo == 1) ? "inactive" : "active"].join("-")}>
-          <BiArrowToLeft 
-            id="page-list-controlloer-icon-id"
+          {/* <BiArrowToLeft 
+            id="page-list-controller-icon-id"
             onClick={props.pageNo > 1 ? fastBackward : undefined}
-          />
+          /> */}
+          <img id="page-list-controller-icon-id" src= { leftXArr } onClick={props.pageNo > 1 ? fastBackward : undefined}></img>
         </div>
         <div className={["icon-wrapper", (props.pagesBound === undefined || props.pageNo == 1) ? "inactive" : "active"].join("-")}>
-          <BiLeftArrowAlt
+          {/* <BiLeftArrowAlt
             id="page-list-controlloer-icon-id"
             onClick={props.pageNo > 1 ? decreasePage : undefined}
-          />
+          /> */}
+          <img id="page-list-controller-icon-id" src= { leftArr } onClick={props.pageNo > 1 ? decreasePage : undefined}></img>
         </div>
         <div className="page-navigator">
           <input type="number" name="designated-num" value={props.pageNo == 0 ? 1 : props.pageNo} min="1" max={props.pagesBound == '---' ? 1 : props.pagesBound} onChange={e => props.setPageNo(Number(e.target.value))} />
@@ -70,16 +80,18 @@ export default function PageListController(props) {
           <div className="page-bound">{props.pagesBound === undefined? "---" : props.pagesBound}</div>
         </div>
          <div className={["icon-wrapper", (props.pagesBound === undefined || props.pageNo == props.pagesBound) ? "inactive" : "active"].join("-")}>
-          <BiRightArrowAlt 
+          {/* <BiRightArrowAlt 
             id="page-list-controlloer-icon-id"
             onClick={props.pageNo < props.pagesBound ? increasePage : undefined}
-          />
+          /> */}
+          <img id="page-list-controller-icon-id" src= { rightArr } onClick={props.pageNo < props.pagesBound ? increasePage : undefined}></img>
         </div>
         <div className={["icon-wrapper", (props.pagesBound === undefined || props.pageNo == props.pagesBound) ? "inactive" : "active"].join("-")}>
-          <BiArrowToRight
+          {/* <BiArrowToRight
             id="page-list-controlloer-icon-id"
             onClick={props.pageNo < props.pagesBound ? fastForward : undefined}
-          />
+          /> */}
+          <img id="page-list-controller-icon-id" src= { rightXArr } onClick={props.pageNo < props.pagesBound ? fastForward : undefined}></img>
         </div>
       </div>
     </div>
