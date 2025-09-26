@@ -2,7 +2,7 @@ import './pagelistcontroller.css';
 
 import { BiLeftArrowAlt, BiRightArrowAlt, BiArrowToLeft, BiArrowToRight } from "react-icons/bi";
 import { TbBooks, TbBooksOff } from "react-icons/tb";
-import openBook from '../../Images/oper-book.png';
+import openBook from '../../Images/open-book.png';
 import stacks from '../../Images/stacks.png';
 import leftXArr from '../../Images/rewind.png';
 import leftArr from '../../Images/arrow-left.png';
