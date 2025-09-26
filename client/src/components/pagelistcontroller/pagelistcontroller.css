@@ -94,7 +94,8 @@ input[name=designated-num]{
 }
 
 .icon-wrapper-active:hover{
-    background: #141a30;
+    /* background: #141a30; */
+    background: #f4f5f7;
     color: #f1f1f1
 }
 
