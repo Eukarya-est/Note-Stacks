@@ -55,7 +55,7 @@ export default function PageListController(props) {
           <TbBooks className="shelf-on" id="shelf-icon-id" onClick={props.toggleShelf} />:
           <TbBooksOff className="shelf-off" id="shelf-icon-id" onClick={props.toggleShelf} />
         } */}
-          <img className={props.openShelf ? "shelf-on":"shelf-off"} id="shelf-icon-id" src={props.openShelf ? stacks:openBook} key={props.openShelf ? stacks:openBook} onClick={props.toggleShelf}></img>
+          <img id="shelf-icon-id" src={stacks} onClick={props.toggleShelf}></img>
         </div>
       </div>
       <div className="page-list-controller-icons">
